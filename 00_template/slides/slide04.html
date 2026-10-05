@@ -1,0 +1,138 @@
+<!-- Slide 04: Panel de Telemetría y Métricas RWE -->
+<section class="slide" id="slide04" data-coord="SLD_04 // SEC_RWE_TELEMETRY">
+    <div class="slide-content left">
+        
+        <!-- Header Track -->
+        <div class="slide-title-block">
+            <span class="label-kicker">CUADRO DE MANDO // QUANTITATIVE TELEMETRY</span>
+            <h2>Telemetría de la Cohorte y Desempeño Analítico</h2>
+            <p class="lead-text">
+                Parámetros bioestadísticos y de calidad de datos observados en el estudio multicéntrico de efectividad comparativa.
+            </p>
+        </div>
+
+        <!-- 4-Up Metric Dashboard (Slide Body Grid) -->
+        <div class="slide-body-grid grid-4">
+            
+            <!-- Metric 1: Cohort Volume -->
+            <div class="card telemetry-card chamfer-card fragment" data-fragment-index="1">
+                <div class="telemetry-meta">
+                    <span>PARAM // COHORT_VOLUME</span>
+                    <div class="telemetry-indicator indicator-emerald"></div>
+                </div>
+                <div>
+                    <div class="telemetry-value">
+                        1.24<span class="telemetry-unit">M</span>
+                    </div>
+                    <div style="font-size: clamp(0.72rem, 0.8vw, 0.88rem); color: var(--text-dim); margin-top: 4px; text-transform: uppercase;">Pacientes en Seguimiento</div>
+                </div>
+                <!-- Sparkline SVG -->
+                <div style="height: 36px; width: 100%; border-bottom: 1px solid var(--border-subtle); padding-bottom: 4px;">
+                    <svg width="100%" height="100%" viewBox="0 0 160 30" preserveAspectRatio="none">
+                        <polyline fill="none" stroke="#4edea3" stroke-width="2" points="0,24 25,20 50,22 75,15 100,16 125,8 160,4"/>
+                        <circle cx="160" cy="4" r="3" fill="#4edea3"/>
+                    </svg>
+                </div>
+                <div class="telemetry-delta delta-positive">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                    <span>+18.4% vs LÍNEA BASE</span>
+                </div>
+            </div>
+
+            <!-- Metric 2: Hazard Ratio Adjusted -->
+            <div class="card telemetry-card chamfer-card fragment" data-fragment-index="2">
+                <div class="telemetry-meta">
+                    <span>PARAM // HAZARD_RATIO_ADJ</span>
+                    <div class="telemetry-indicator indicator-emerald"></div>
+                </div>
+                <div>
+                    <div class="telemetry-value">
+                        0.74<span class="telemetry-unit">HR</span>
+                    </div>
+                    <div style="font-size: clamp(0.72rem, 0.8vw, 0.88rem); color: var(--text-dim); margin-top: 4px;">IC 95%: [0.68 - 0.81]</div>
+                </div>
+                <!-- Sparkline SVG -->
+                <div style="height: 36px; width: 100%; border-bottom: 1px solid var(--border-subtle); padding-bottom: 4px;">
+                    <svg width="100%" height="100%" viewBox="0 0 160 30" preserveAspectRatio="none">
+                        <polyline fill="none" stroke="#10b981" stroke-width="2" points="0,8 30,12 60,10 90,18 120,22 160,26"/>
+                        <circle cx="160" cy="26" r="3" fill="#10b981"/>
+                    </svg>
+                </div>
+                <div class="telemetry-delta delta-positive">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    <span>-26.0% REDUCCIÓN EVENTOS (p &lt; 0.001)</span>
+                </div>
+            </div>
+
+            <!-- Metric 3: Semantic Completion (OMOP) -->
+            <div class="card telemetry-card chamfer-card fragment" data-fragment-index="3">
+                <div class="telemetry-meta">
+                    <span>PARAM // SEMANTIC_MATCH</span>
+                    <div class="telemetry-indicator indicator-blue"></div>
+                </div>
+                <div>
+                    <div class="telemetry-value">
+                        99.6<span class="telemetry-unit">%</span>
+                    </div>
+                    <div style="font-size: clamp(0.72rem, 0.8vw, 0.88rem); color: var(--text-dim); margin-top: 4px; text-transform: uppercase;">DQD Quality Benchmark</div>
+                </div>
+                <!-- Sparkline SVG -->
+                <div style="height: 36px; width: 100%; border-bottom: 1px solid var(--border-subtle); padding-bottom: 4px;">
+                    <svg width="100%" height="100%" viewBox="0 0 160 30" preserveAspectRatio="none">
+                        <polyline fill="none" stroke="#b4c5ff" stroke-width="2" points="0,15 35,14 70,8 105,6 140,4 160,4"/>
+                        <circle cx="160" cy="4" r="3" fill="#b4c5ff"/>
+                    </svg>
+                </div>
+                <div class="telemetry-delta delta-neutral">
+                    <span>3,420 / 3,432 CHECKS APROBADOS</span>
+                </div>
+            </div>
+
+            <!-- Metric 4: Time to Validated Evidence -->
+            <div class="card telemetry-card chamfer-card fragment" data-fragment-index="4">
+                <div class="telemetry-meta">
+                    <span>PARAM // VELOCITY_INDEX</span>
+                    <div class="telemetry-indicator indicator-indigo"></div>
+                </div>
+                <div>
+                    <div class="telemetry-value">
+                        4.2<span class="telemetry-unit">SEM</span>
+                    </div>
+                    <div style="font-size: clamp(0.72rem, 0.8vw, 0.88rem); color: var(--text-dim); margin-top: 4px; text-transform: uppercase;">Ciclo de Evidencia Final</div>
+                </div>
+                <!-- Sparkline SVG -->
+                <div style="height: 36px; width: 100%; border-bottom: 1px solid var(--border-subtle); padding-bottom: 4px;">
+                    <svg width="100%" height="100%" viewBox="0 0 160 30" preserveAspectRatio="none">
+                        <polyline fill="none" stroke="#6366f1" stroke-width="2" points="0,5 30,10 60,16 90,20 120,24 160,25"/>
+                        <circle cx="160" cy="25" r="3" fill="#6366f1"/>
+                    </svg>
+                </div>
+                <div class="telemetry-delta delta-positive">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span>-68% ACELERACIÓN vs AD-HOC</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Spec Data Table Baseline Track -->
+        <div class="card" style="margin-top: clamp(10px, 1.4vh, 18px); padding: clamp(12px, 1.6vh, 18px) clamp(16px, 1.6vw, 24px); display: flex; justify-content: space-between; align-items: center; background: var(--surface-low); border: 1px solid var(--border-subtle); flex-wrap: wrap; gap: 12px;">
+            <div style="display: flex; gap: clamp(14px, 2.5vw, 36px); align-items: center; flex-wrap: wrap;">
+                <div>
+                    <span style="font-size: clamp(0.72rem, 0.8vw, 0.88rem); color: var(--text-dim); text-transform: uppercase;">Modelo Estadístico:</span>
+                    <div style="font-size: clamp(0.85rem, 0.95vw, 1.05rem); color: var(--text-high); font-weight: 600;">Cox Proportional Hazards + Fine-Gray Subdistribution</div>
+                </div>
+                <div>
+                    <span style="font-size: clamp(0.72rem, 0.8vw, 0.88rem); color: var(--text-dim); text-transform: uppercase;">Apareamiento:</span>
+                    <div style="font-size: clamp(0.85rem, 0.95vw, 1.05rem); color: var(--primary); font-weight: 600;">1:1 Nearest Neighbor Caliper (0.05)</div>
+                </div>
+                <div>
+                    <span style="font-size: clamp(0.72rem, 0.8vw, 0.88rem); color: var(--text-dim); text-transform: uppercase;">Control Negativo:</span>
+                    <div style="font-size: clamp(0.85rem, 0.95vw, 1.05rem); color: var(--tertiary); font-weight: 600;">85 Controles Empíricos Calibrados</div>
+                </div>
+            </div>
+            <span class="badge badge-outline">REPRODUCIBILITY: PASS</span>
+        </div>
+
+    </div>
+</section>

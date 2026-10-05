@@ -1,0 +1,115 @@
+<!-- Slide 02: El Problema — El Trilema Estructural de los Datos Clínicos -->
+<section class="slide" id="slide02" data-coord="SLD_02 // SEC_TRILEMMA_PROBLEM">
+    <div class="slide-content left">
+        
+        <!-- Header Track -->
+        <div class="slide-title-block">
+            <span class="label-kicker">DIAGNÓSTICO DEL MERCADO // EL CUELLO DE BOTELLA</span>
+            <h2>El Trilema Estructural de los Datos de Salud</h2>
+            <p class="lead-text">
+                El 80% del conocimiento sobre efectividad y seguridad real de los tratamientos existe dentro de las historias clínicas. Sin embargo, acceder a esa información enfrenta tres barreras críticas.
+            </p>
+        </div>
+
+        <!-- 3-Pillar Trilemma Grid (Expansive Body) -->
+        <div class="slide-body-grid grid-3">
+            
+            <!-- Pillar 1: Legal & Privacy Barrier -->
+            <div class="card chamfer-card fragment" data-fragment-index="1" style="border-top: 4px solid #ffb4ab; justify-content: space-between;">
+                <div>
+                    <div class="telemetry-meta" style="margin-bottom: var(--space-sm);">
+                        <span>BARRERA 01</span>
+                        <span class="badge" style="background: rgba(255, 180, 171, 0.15); border: 1px solid #ffb4ab; color: #ffb4ab;">REGULATORIA</span>
+                    </div>
+                    <h3 style="color: var(--text-high); margin-bottom: 12px;">Privacidad & Riesgo Legal</h3>
+                    
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                        <li style="display: flex; gap: 10px;">
+                            <span style="color: #ffb4ab; font-weight: bold; font-size: 1.2rem; line-height: 1;">&bull;</span>
+                            <span><strong style="color: var(--text-high);">Riesgo de sanciones severas:</strong> Extraer historias clínicas fuera del hospital vulnera GDPR, HIPAA y normativas de datos sensibles en salud (Ley 1581).</span>
+                        </li>
+                        <li style="display: flex; gap: 10px;">
+                            <span style="color: #ffb4ab; font-weight: bold; font-size: 1.2rem; line-height: 1;">&bull;</span>
+                            <span><strong style="color: var(--text-high);">Sesgo de selección (*Consent Bias*):</strong> Pretender consentimiento individual en estudios retrospectivos destruye la validez estadística y representatividad de la cohorte.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="color: #ffb4ab; padding-top: 12px; border-top: 1px solid var(--border-subtle); margin-top: 14px; font-weight: 600; font-family: var(--font-mono);">
+                    &times; Extracción centralizada inviable
+                </div>
+            </div>
+
+            <!-- Pillar 2: Extreme Technical Heterogeneity -->
+            <div class="card chamfer-card fragment" data-fragment-index="2" style="border-top: 4px solid var(--secondary-indigo); justify-content: space-between;">
+                <div>
+                    <div class="telemetry-meta" style="margin-bottom: var(--space-sm);">
+                        <span>BARRERA 02</span>
+                        <span class="badge badge-indigo">HETEROGENEIDAD</span>
+                    </div>
+                    <h3 style="color: var(--text-high); margin-bottom: 12px;">Torre de Babel Técnica</h3>
+                    
+                    <div style="background: var(--surface-low); padding: 12px 16px; border-radius: 6px; border: 1px solid var(--border-subtle); margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-family: var(--font-headline); font-size: clamp(2.2rem, 2.8vw, 3.4rem); font-weight: 700; color: var(--secondary); line-height: 1;">59%</div>
+                            <div style="color: var(--text-dim); text-transform: uppercase; margin-top: 4px; font-size: 0.82rem;">Vocabularios Locales</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-family: var(--font-headline); font-size: clamp(2.2rem, 2.8vw, 3.4rem); font-weight: 700; color: var(--text-high); line-height: 1;">358d</div>
+                            <div style="color: var(--text-dim); text-transform: uppercase; margin-top: 4px; font-size: 0.82rem;">Mediana Armonización</div>
+                        </div>
+                    </div>
+
+                    <p style="margin: 0; line-height: 1.6;">
+                        El 59% de los términos clínicos hospitalarios no están estandarizados (Voss et al., <em>JAMIA</em> 2024). Los proyectos multicéntricos tardan casi un año en mapear datos manualmente.
+                    </p>
+                </div>
+
+                <div style="color: var(--secondary); padding-top: 12px; border-top: 1px solid var(--border-subtle); margin-top: 14px; font-weight: 600; font-family: var(--font-mono);">
+                    &times; Fragmentación semántica extrema
+                </div>
+            </div>
+
+            <!-- Pillar 3: Misaligned Economic Incentives -->
+            <div class="card chamfer-card fragment" data-fragment-index="3" style="border-top: 4px solid #fbbf24; justify-content: space-between;">
+                <div>
+                    <div class="telemetry-meta" style="margin-bottom: var(--space-sm);">
+                        <span>BARRERA 03</span>
+                        <span class="badge badge-amber">INCENTIVOS</span>
+                    </div>
+                    <h3 style="color: var(--text-high); margin-bottom: 12px;">Incentivos Desalineados</h3>
+                    
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                        <li style="display: flex; gap: 10px;">
+                            <span style="color: #fbbf24; font-weight: bold; font-size: 1.2rem; line-height: 1;">&bull;</span>
+                            <span><strong style="color: var(--text-high);">Modelo extractivo agotado:</strong> Los intermediarios compran bases estáticas a bajo costo y las revenden sin transferir valor ni tecnología al centro.</span>
+                        </li>
+                        <li style="display: flex; gap: 10px;">
+                            <span style="color: #fbbf24; font-weight: bold; font-size: 1.2rem; line-height: 1;">&bull;</span>
+                            <span><strong style="color: var(--text-high);">Saturación operativa:</strong> Los hospitales carecen de presupuesto y personal especializado para limpiar y curar datos para terceros.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="color: #fbbf24; padding-top: 12px; border-top: 1px solid var(--border-subtle); margin-top: 14px; font-weight: 600; font-family: var(--font-mono);">
+                    &times; Resistencia hospitalaria justificada
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Problem Callout Summary -->
+        <div class="callout callout-blue fragment" data-fragment-index="4">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="flex-shrink: 0; margin-top: 2px; color: var(--primary);">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            <div>
+                <strong style="color: var(--text-high);">La Consecuencia:</strong>
+                <span>
+                    Los patrocinadores farmacéuticos acceden a datos fragmentados o desactualizados con demoras de más de un año, mientras los centros de salud rechazan las propuestas al no recibir ningún beneficio tangible.
+                </span>
+            </div>
+        </div>
+
+    </div>
+</section>

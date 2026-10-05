@@ -1,0 +1,97 @@
+<!-- Slide 03: Fundamentos y Arquitectura del Flujo RWE -->
+<section class="slide" id="slide03" data-coord="SLD_03 // SEC_RWE_FOUNDATIONS">
+    <div class="slide-content left">
+        
+        <!-- Header Track -->
+        <div class="slide-title-block">
+            <span class="label-kicker">ARQUITECTURA DE FLUJO // RWD ➔ RWE</span>
+            <h2>De Datos Dispersos a Evidencia Validada</h2>
+            <p class="lead-text">
+                La brecha fundamental entre los Ensayos Clínicos Aleatorizados (RCT) y la práctica médica real radica en la representatividad poblacional y el volumen temporal.
+            </p>
+        </div>
+
+        <!-- Asymmetric 7:5 Split Layout (Slide Body Grid) -->
+        <div class="slide-body-grid split-7-5">
+            
+            <!-- Left 7fr: Vector Architecture Pipeline -->
+            <div class="card structural-panel" style="padding: clamp(14px, 2vh, 24px) clamp(16px, 1.8vw, 24px); border: 1px solid var(--border-keyline); background: var(--surface-low); display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="telemetry-meta" style="margin-bottom: var(--space-md);">
+                        <span>CONDUIT_ID: HIRUDO_PIPE_01</span>
+                        <span class="badge badge-indigo">ETL &amp; STANDARDIZATION</span>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: clamp(10px, 1.4vh, 16px);">
+                        <!-- Step 1 in Pipeline -->
+                        <div style="display: flex; align-items: center; gap: clamp(10px, 1.2vw, 16px); padding: clamp(10px, 1.4vh, 16px); background: var(--surface-container); border-left: 4px solid var(--primary); border-radius: var(--radius-sm);">
+                            <div style="width: 32px; height: 32px; background: var(--surface-high); border: 1.5px solid var(--primary-command); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--primary); font-size: clamp(0.85rem, 0.95vw, 1.05rem); flex-shrink: 0;">
+                                01
+                            </div>
+                            <div>
+                                <strong style="color: var(--text-high); display: block; margin-bottom: 2px;">Fuentes Heterogéneas de RWD</strong>
+                                <div style="color: var(--text-dim); line-height: 1.5;">EHR hospitalario (Epic, Cerner), reclamaciones de seguros (claims), biobancos genómicos y registros de patología.</div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 in Pipeline -->
+                        <div style="display: flex; align-items: center; gap: clamp(10px, 1.2vw, 16px); padding: clamp(10px, 1.4vh, 16px); background: var(--surface-container); border-left: 4px solid var(--secondary-indigo); border-radius: var(--radius-sm);">
+                            <div style="width: 32px; height: 32px; background: var(--surface-high); border: 1.5px solid var(--secondary-indigo); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--secondary); font-size: clamp(0.85rem, 0.95vw, 1.05rem); flex-shrink: 0;">
+                                02
+                            </div>
+                            <div>
+                                <strong style="color: var(--text-high); display: block; margin-bottom: 2px;">Normalización Semántica OMOP CDM</strong>
+                                <div style="color: var(--text-dim); line-height: 1.5;">Mapeo de códigos locales a conceptos estándar (SNOMED, LOINC, RxNorm) manteniendo la trazabilidad original del dato.</div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 in Pipeline -->
+                        <div style="display: flex; align-items: center; gap: clamp(10px, 1.2vw, 16px); padding: clamp(10px, 1.4vh, 16px); background: var(--surface-container); border-left: 4px solid var(--tertiary-emerald); border-radius: var(--radius-sm);">
+                            <div style="width: 32px; height: 32px; background: var(--surface-high); border: 1.5px solid var(--tertiary-emerald); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--tertiary); font-size: clamp(0.85rem, 0.95vw, 1.05rem); flex-shrink: 0;">
+                                03
+                            </div>
+                            <div>
+                                <strong style="color: var(--text-high); display: block; margin-bottom: 2px;">Motor Analítico &amp; Inferencia Causal</strong>
+                                <div style="color: var(--text-dim); line-height: 1.5;">Diseño de cohorte en Atlas, balance de covariables (PSM/IPTW), modelos de riesgos proporcionales de Cox y control DQD.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pipeline Footer Metrics -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: clamp(0.78rem, 0.86vw, 0.94rem);">
+                    <span>ESTÁNDAR: OHDSI OMOP v5.4</span>
+                    <span style="color: var(--tertiary); font-weight: 600;">&bull; CONCORDANCIA SEMÁNTICA: 99.4%</span>
+                </div>
+            </div>
+
+            <!-- Right 5fr: 3 Foundational Pillars -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between; gap: clamp(10px, 1.4vh, 16px);">
+                
+                <div class="card chamfer-card fragment" data-fragment-index="1" style="border-left: 4px solid var(--primary); padding: clamp(12px, 1.6vh, 18px) clamp(14px, 1.4vw, 20px);">
+                    <h4 style="color: var(--text-high); margin-bottom: 6px;">1. Validez Externa</h4>
+                    <p style="color: var(--text-muted); line-height: 1.55; margin: 0;">
+                        Los RCT evalúan <em>eficacia</em> en poblaciones hiper-seleccionadas con estrictos criterios de exclusión; la RWE cuantifica <em>efectividad</em> en pacientes con comorbilidades y polifarmacia en el mundo real.
+                    </p>
+                </div>
+
+                <div class="card chamfer-card fragment" data-fragment-index="2" style="border-left: 4px solid var(--secondary-indigo); padding: clamp(12px, 1.6vh, 18px) clamp(14px, 1.4vw, 20px);">
+                    <h4 style="color: var(--text-high); margin-bottom: 6px;">2. Control de Confusión</h4>
+                    <p style="color: var(--text-muted); line-height: 1.55; margin: 0;">
+                        Dado que la asignación no es aleatoria, el sesgo de indicación se neutraliza mediante métodos avanzados de <strong>Propensity Score Matching</strong> y variables instrumentales validadas.
+                    </p>
+                </div>
+
+                <div class="card chamfer-card fragment" data-fragment-index="3" style="border-left: 4px solid var(--tertiary-emerald); padding: clamp(12px, 1.6vh, 18px) clamp(14px, 1.4vw, 20px);">
+                    <h4 style="color: var(--text-high); margin-bottom: 6px;">3. Red Federada &amp; Privacidad</h4>
+                    <p style="color: var(--text-muted); line-height: 1.55; margin: 0;">
+                        El paradigma moderno de RWE es descentralizado: los datos de salud nunca salen de las instituciones custodias; los algoritmos analíticos viajan hacia los datos (<em>Federated Analytics</em>).
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

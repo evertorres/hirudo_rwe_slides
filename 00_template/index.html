@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hirudo RWE | Diapositiva Plantilla Maestra</title>
+    <meta name="description" content="Plantilla maestra de presentaciones técnicas para Hirudo RWE bajo el sistema de diseño Syntropic Telemetry.">
+    <!-- Design System Global Styles -->
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+        <span>INICIALIZANDO TELEMETRÍA // HIRUDO RWE...</span>
+    </div>
+
+    <!-- Presentation HUD Header (50px) -->
+    <header class="hud-header">
+        <div class="hud-header-left">
+            <div class="hud-brand">
+                <div class="hud-brand-dot"></div>
+                <span>HIRUDO // RWE</span>
+            </div>
+            <div class="hud-breadcrumb">
+                [ <span id="hudModule">MÓDULO 00</span> // <span id="hudTopic">PLANTILLA_MAESTRA</span> ]
+            </div>
+        </div>
+
+        <!-- Center Zone: Top Integrated Navigation & Fullscreen Controls -->
+        <div class="hud-header-center">
+            <nav class="slide-controls" aria-label="Controles de navegación">
+                <button class="control-btn" id="prevSlide" disabled title="Diapositiva anterior (Flecha izquierda)">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <span class="slide-counter" id="slideCounter">-- / --</span>
+                <button class="control-btn" id="nextSlide" title="Siguiente diapositiva (Flecha derecha o Espacio)">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                <div class="hud-control-divider"></div>
+                <button class="control-btn" id="fullscreenToggle" title="Pantalla completa (Tecla F)">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+                    </svg>
+                </button>
+            </nav>
+        </div>
+
+        <div class="hud-header-right">
+            <div class="hud-progress-track">
+                <div class="hud-progress-fill" id="hudProgressFill"></div>
+            </div>
+            <div class="hud-status-tag">
+                ACTIVE STREAM
+            </div>
+        </div>
+    </header>
+
+    <!-- Presentation Main Container -->
+    <main class="presentation-container">
+        <div id="slide-container">
+            <!-- Dynamic slides will be injected here via slides/slideXX.html -->
+        </div>
+    </main>
+
+    <!-- Presentation HUD Footer (36px) -->
+    <footer class="hud-footer">
+        <div class="hud-footer-left">
+            <span class="hud-coordinate" id="hudCoordinate">SLD_01 // SEC_RWE_INIT</span>
+        </div>
+        <div class="hud-footer-center">
+            <span>HIRUDO REAL WORLD EVIDENCE PLATFORM &bull; PRECISION TELEMETRY</span>
+        </div>
+        <div class="hud-footer-right">
+            <span>CLEARANCE: LEVEL_01</span>
+        </div>
+    </footer>
+
+    <!-- Global Image Modal for Zoomable Graphics -->
+    <div class="modal-overlay" id="global-image-modal">
+        <div class="modal-image-wrapper">
+            <button class="modal-close" title="Cerrar Imagen">&times;</button>
+            <img src="" id="global-image-content" class="modal-image-content" alt="Vista ampliada">
+        </div>
+    </div>
+
+    <!-- Presentation Engine Scripts -->
+    <script src="../shared/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const container = document.getElementById('slide-container');
+            const loader = document.getElementById('loader');
+
+            try {
+                // Number of slide files to load in this session
+                const totalSlides = 7;
+                const slidePromises = [];
+
+                for (let i = 1; i <= totalSlides; i++) {
+                    const slideNum = i.toString().padStart(2, '0');
+                    slidePromises.push(
+                        fetch(`slides/slide${slideNum}.html`).then(res => {
+                            if (!res.ok) throw new Error(`HTTP ${res.status} al cargar slides/slide${slideNum}.html`);
+                            return res.text();
+                        })
+                    );
+                }
+
+                const slideContents = await Promise.all(slidePromises);
+                container.innerHTML = slideContents.join('\n');
+
+                // Dismiss loader
+                loader.classList.add('hidden');
+
+                // Initialize Slide Engine
+                if (window.initApp) {
+                    window.initApp();
+                }
+            } catch (error) {
+                console.error("Error al cargar la presentación:", error);
+                loader.innerHTML = `
+                    <div style="color: var(--error); text-align: center; max-width: 650px; padding: 24px; background: var(--surface-container); border: 1px solid var(--error-container); border-radius: 6px;">
+                        <h3 style="color: var(--error); margin-bottom: 8px;">DISRUPCIÓN DE TELEMETRÍA // ERROR DE CARGA</h3>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">${error.message}</p>
+                        <p style="font-size: 11px; color: var(--text-dim); line-height: 1.5;">
+                            Las diapositivas modulares se cargan mediante solicitudes asíncronas estándar (Fetch API). Si estás ejecutando el archivo localmente mediante el protocolo <code>file://</code>, por favor inicia un servidor local:<br>
+                            <code style="display:inline-block; margin-top: 6px; padding: 4px 10px; background: var(--surface-low); border: 1px solid var(--border-keyline); color: var(--primary);">python -m http.server 8000</code> o la extensión <strong>Live Server</strong> en VS Code.
+                        </p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+
+</html>

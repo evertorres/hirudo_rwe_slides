@@ -1,0 +1,92 @@
+<!-- Slide 06: Gobernanza y Ética — El Marco "Five Safes" y Exención de Consentimiento -->
+<section class="slide" id="slide06" data-coord="SLD_06 // SEC_GOVERNANCE_ETHICS">
+    <div class="slide-content left">
+        
+        <!-- Header Track -->
+        <div class="slide-title-block">
+            <span class="label-kicker">PRIVACIDAD POR DISEÑO // APROBADO POR COMITÉS IRB</span>
+            <h2>Privacidad por Diseño: Aprobado por Comités de Ética (IRB)</h2>
+            <p class="lead-text">
+                Desactivamos las objeciones de privacidad y cumplimiento que habitualmente bloquean el uso secundario de datos en salud. Respaldado por Hallinan et al., <em>BMJ Health Care Inform</em> (2024).
+            </p>
+        </div>
+
+        <!-- Split 7:5 Layout (Expansive Body) -->
+        <div class="slide-body-grid split-7-5">
+            
+            <!-- Left 7fr: The 5 Safes Dimensions -->
+            <div class="card structural-panel" style="padding: clamp(16px, 1.8vw, 26px); justify-content: space-between;">
+                <div class="telemetry-meta" style="margin-bottom: var(--space-sm);">
+                    <span>MARCO DE PRIVACIDAD // FIVE SAFES</span>
+                    <span class="badge badge-emerald">ZERO MICRODATA LEAK</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    
+                    <!-- Safe 1 -->
+                    <div style="display: flex; align-items: flex-start; gap: 12px; padding: clamp(10px, 1.2vh, 15px) clamp(12px, 1.3vw, 18px); background: var(--surface-container); border-left: 3px solid var(--primary); border-radius: var(--radius-sm);">
+                        <span style="font-family: var(--font-mono); font-weight: 700; color: var(--primary); font-size: clamp(0.85rem, 0.95vw, 1.05rem); min-width: 125px; text-transform: uppercase;">1. SAFE PROJECTS</span>
+                        <span style="line-height: 1.5;">Consultas permitidas exclusivamente para protocolos con mérito científico formal y aprobación de comité de ética.</span>
+                    </div>
+
+                    <!-- Safe 2 -->
+                    <div style="display: flex; align-items: flex-start; gap: 12px; padding: clamp(10px, 1.2vh, 15px) clamp(12px, 1.3vw, 18px); background: var(--surface-container); border-left: 3px solid var(--secondary-indigo); border-radius: var(--radius-sm);">
+                        <span style="font-family: var(--font-mono); font-weight: 700; color: var(--secondary); font-size: clamp(0.85rem, 0.95vw, 1.05rem); min-width: 125px; text-transform: uppercase;">2. SAFE PEOPLE</span>
+                        <span style="line-height: 1.5;">Investigadores acreditados con validación de identidad, roles de acceso restringidos y trazabilidad de auditoría.</span>
+                    </div>
+
+                    <!-- Safe 3 -->
+                    <div style="display: flex; align-items: flex-start; gap: 12px; padding: clamp(10px, 1.2vh, 15px) clamp(12px, 1.3vw, 18px); background: var(--surface-container); border-left: 3px solid var(--tertiary-emerald); border-radius: var(--radius-sm);">
+                        <span style="font-family: var(--font-mono); font-weight: 700; color: var(--tertiary); font-size: clamp(0.85rem, 0.95vw, 1.05rem); min-width: 125px; text-transform: uppercase;">3. SAFE SETTINGS</span>
+                        <span style="line-height: 1.5;">Ejecución analítica en contenedores seguros detrás del firewall del hospital. <strong style="color: var(--text-high);">Cero microdatos abandonan el centro</strong>.</span>
+                    </div>
+
+                    <!-- Safe 4 -->
+                    <div style="display: flex; align-items: flex-start; gap: 12px; padding: clamp(10px, 1.2vh, 15px) clamp(12px, 1.3vw, 18px); background: var(--surface-container); border-left: 3px solid var(--primary-command); border-radius: var(--radius-sm);">
+                        <span style="font-family: var(--font-mono); font-weight: 700; color: var(--primary); font-size: clamp(0.85rem, 0.95vw, 1.05rem); min-width: 125px; text-transform: uppercase;">4. SAFE DATA</span>
+                        <span style="line-height: 1.5;">Desidentificación profunda conforme a HIPAA Safe Harbor / GDPR y estandarización ontológica en OMOP CDM.</span>
+                    </div>
+
+                    <!-- Safe 5 -->
+                    <div style="display: flex; align-items: flex-start; gap: 12px; padding: clamp(10px, 1.2vh, 15px) clamp(12px, 1.3vw, 18px); background: var(--surface-container); border-left: 3px solid #fbbf24; border-radius: var(--radius-sm);">
+                        <span style="font-family: var(--font-mono); font-weight: 700; color: #fbbf24; font-size: clamp(0.85rem, 0.95vw, 1.05rem); min-width: 125px; text-transform: uppercase;">5. SAFE OUTPUTS</span>
+                        <span style="line-height: 1.5;">Supresión matemática estricta de cualquier celda con <strong style="color: #fbbf24;">n &lt; 5</strong> en resultados agregados para bloquear reidentificación.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Right 5fr: Bioethical Doctrine & Consent Waiver -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-md);">
+                
+                <!-- Doctrine Card -->
+                <div class="card chamfer-card fragment" data-fragment-index="1" style="border-left: 4px solid var(--tertiary-emerald); justify-content: space-between;">
+                    <div>
+                        <div class="telemetry-meta" style="margin-bottom: var(--space-xs);">
+                            <span>DOCTRINA BIOÉTICA</span>
+                            <span class="badge badge-emerald">EXENCIÓN VÁLIDA</span>
+                        </div>
+                        <h4 style="color: var(--text-high); margin-bottom: 8px;">Duty of Easy Rescue</h4>
+                        <p style="margin-bottom: 12px; line-height: 1.6;">
+                            Fundamento jurídico y ético para tramitar la <strong>exención de consentimiento informado (*waiver of consent*)</strong> en estudios observacionales de uso secundario.
+                        </p>
+                        <div style="color: var(--tertiary); background: var(--surface-low); padding: 12px 14px; border-radius: 6px; border: 1px solid var(--border-subtle); line-height: 1.5; font-size: clamp(0.88rem, 1vw, 1.06rem);">
+                            &check; Al no existir riesgo ni extracción física, se elimina el sesgo de selección y se garantiza la representatividad poblacional de la cohorte.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legal Compliance Pill -->
+                <div class="card fragment" data-fragment-index="2" style="background: var(--surface-low); border: 1px solid var(--border-subtle); padding: clamp(14px, 1.5vh, 20px);">
+                    <div style="font-size: clamp(0.78rem, 0.88vw, 0.95rem); color: var(--text-dim); text-transform: uppercase; margin-bottom: 6px; font-weight: 600;">Marco Regulatorio Aplicado:</div>
+                    <div style="color: var(--text-high); font-weight: 600; line-height: 1.5; font-size: clamp(0.92rem, 1.05vw, 1.15rem);">
+                        Ley Estatutaria 1581 de 2012 (Colombia) &bull; Guías ICH-GCP E6(R2) &bull; Estándar CIOMS/OMS para Investigación Biomédica en Salud.
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

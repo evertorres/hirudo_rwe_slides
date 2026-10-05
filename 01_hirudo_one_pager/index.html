@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIRUDO | Clinical Data & RWE Solutions — Executive Pitch Deck</title>
+    <meta name="description" content="Master Pitch Deck ejecutivo de HIRUDO: Desbloqueando la Inteligencia Clínica del Mundo Real sin Extraer Datos Hospitalarios.">
+    <!-- Design System Global Styles -->
+    <link rel="stylesheet" href="../shared/styles.css">
+    <style>
+        /* Specific adjustments for 14-slide executive presentation */
+        .faq-modal-dialog {
+            background: var(--surface-container);
+            border: 1px solid var(--border-keyline);
+            border-radius: var(--radius-md);
+            max-width: 1050px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: clamp(20px, 3vh, 36px);
+            box-shadow: var(--shadow-elevated);
+            position: relative;
+        }
+
+        .faq-item {
+            background: var(--surface-low);
+            border-left: 4px solid var(--secondary-indigo);
+            padding: clamp(12px, 1.6vh, 18px) clamp(16px, 1.6vw, 22px);
+            border-radius: var(--radius-sm);
+            margin-bottom: clamp(12px, 1.6vh, 18px);
+        }
+
+        .faq-item h4 {
+            color: var(--primary);
+            font-size: clamp(0.98rem, 1.12vw, 1.25rem);
+            margin-bottom: 6px;
+            font-family: var(--font-headline);
+        }
+
+        .faq-item p {
+            font-size: clamp(0.85rem, 0.95vw, 1.05rem);
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+        <span>INICIALIZANDO TELEMETRÍA // HIRUDO EXECUTIVE DECK...</span>
+    </div>
+
+    <!-- Presentation HUD Header (50px) -->
+    <header class="hud-header">
+        <div class="hud-header-left">
+            <div class="hud-brand">
+                <div class="hud-brand-dot"></div>
+                <span>HIRUDO // RWE</span>
+            </div>
+            <div class="hud-breadcrumb">
+                [ <span id="hudModule">EXECUTIVE PITCH</span> // <span id="hudTopic">MASTER_DECK</span> ]
+            </div>
+        </div>
+
+        <!-- Center Zone: Top Integrated Navigation & Fullscreen Controls -->
+        <div class="hud-header-center">
+            <nav class="slide-controls" aria-label="Controles de navegación">
+                <button class="control-btn" id="prevSlide" disabled title="Diapositiva anterior (Flecha izquierda)">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <span class="slide-counter" id="slideCounter">-- / --</span>
+                <button class="control-btn" id="nextSlide" title="Siguiente diapositiva (Flecha derecha o Espacio)">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                <div class="hud-control-divider"></div>
+                <button class="control-btn" id="fullscreenToggle" title="Pantalla completa (Tecla F)">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+                    </svg>
+                </button>
+            </nav>
+        </div>
+
+        <div class="hud-header-right">
+            <div class="hud-progress-track">
+                <div class="hud-progress-fill" id="hudProgressFill"></div>
+            </div>
+            <div class="hud-status-tag">
+                CONFIDENTIAL // 2EVS S.A.S.
+            </div>
+        </div>
+    </header>
+
+    <!-- Presentation Main Container -->
+    <main class="presentation-container">
+        <div id="slide-container">
+            <!-- Dynamic slides will be injected here via slides/slide01.html to slide14.html -->
+        </div>
+    </main>
+
+    <!-- Presentation HUD Footer (36px) -->
+    <footer class="hud-footer">
+        <div class="hud-footer-left">
+            <span class="hud-coordinate" id="hudCoordinate">SLD_01 // SEC_PITCH_INIT</span>
+        </div>
+        <div class="hud-footer-center">
+            <span>HIRUDO &bull; 2EVS S.A.S. &bull; REAL-WORLD EVIDENCE & FEDERATED DATA PLATFORM</span>
+        </div>
+        <div class="hud-footer-right">
+            <span>CLEARANCE: LEVEL_01 // VC & PARTNERS</span>
+        </div>
+    </footer>
+
+    <!-- Global Image Modal for Zoomable Graphics -->
+    <div class="modal-overlay" id="global-image-modal">
+        <div class="modal-image-wrapper">
+            <button class="modal-close" title="Cerrar Imagen">&times;</button>
+            <img src="" id="global-image-content" class="modal-image-content" alt="Vista ampliada">
+        </div>
+    </div>
+
+    <!-- Interactive Negotiation / FAQ Annex Modal -->
+    <div class="modal-overlay" id="modal-faq">
+        <div class="faq-modal-dialog">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-lg); border-bottom: 1px solid var(--border-keyline); padding-bottom: 12px;">
+                <div>
+                    <span class="badge badge-indigo" style="margin-bottom: 6px;">ANEXO DE NEGOCIACIÓN</span>
+                    <h3 style="color: var(--text-high); font-size: 1.3rem;">Preguntas Frecuentes & Respuestas Blindadas</h3>
+                </div>
+                <button class="modal-close" onclick="window.closeModal('modal-faq')" style="background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">&times;</button>
+            </div>
+
+            <div class="faq-item">
+                <h4>1. ¿Por qué un hospital aceptaría estandarizar sus datos si sus equipos de sistemas ya están saturados?</h4>
+                <p>Porque HIRUDO asume el acompañamiento técnico del onboarding sin sobrecargar al personal local. Además, el hospital recibe capacidad analítica interna gratuita para las investigaciones de sus propios médicos y un flujo recurrente de ingresos legítimos por cada consulta comercial procesada bajo el modelo <em>Proof of Contribution</em>.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>2. ¿En qué se diferencia HIRUDO de plataformas multinacionales como IQVIA o Flatiron?</h4>
+                <p>Esas plataformas operan bajo modelos extractivos centralizados que generan enormes fricciones de soberanía y privacidad en Latinoamérica, con costos inaccesibles para el mercado regional. HIRUDO ofrece una red federada no custodia donde el dato jamás abandona el hospital, complementada con el levantamiento de ePROMs prospectivos que otorgan una riqueza de desenlaces imposible de replicar con datos secundarios.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>3. ¿Cómo garantizan que un patrocinador no pueda reidentificar pacientes?</h4>
+                <p>Por diseño matemático: el contenedor federado corre con privacidad diferencial y una regla estricta de supresión que bloquea cualquier resultado con menos de 5 pacientes (n &lt; 5). Ningún microdato ni registro individual sale del servidor hospitalario.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>4. ¿Cuánto tarda un hospital en empezar a ver resultados tras sumarse a la red?</h4>
+                <p>Gracias a nuestra arquitectura con Pathling y SQL on FHIR, las consultas de viabilidad preliminar quedan habilitadas en 1 a 2 semanas a partir de exportaciones estándar Bulk FHIR, mientras que la armonización completa al modelo OMOP CDM v5.4 se concluye en semanas mediante pipelines pre-configurados.</p>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; margin-top: var(--space-md);">
+                <button class="btn btn-secondary" onclick="window.closeModal('modal-faq')">Cerrar Anexo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Presentation Engine Scripts -->
+    <script src="../shared/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const container = document.getElementById('slide-container');
+            const loader = document.getElementById('loader');
+
+            try {
+                // 14 slides according to pitch-deck-hirudo-master-slides.md
+                const totalSlides = 14;
+                const slidePromises = [];
+
+                for (let i = 1; i <= totalSlides; i++) {
+                    const slideNum = i.toString().padStart(2, '0');
+                    slidePromises.push(
+                        fetch(`slides/slide${slideNum}.html`).then(res => {
+                            if (!res.ok) throw new Error(`HTTP ${res.status} al cargar slides/slide${slideNum}.html`);
+                            return res.text();
+                        })
+                    );
+                }
+
+                const slideContents = await Promise.all(slidePromises);
+                container.innerHTML = slideContents.join('\n');
+
+                // Dismiss loader
+                loader.classList.add('hidden');
+
+                // Initialize Slide Engine
+                if (window.initApp) {
+                    window.initApp();
+                }
+            } catch (error) {
+                console.error("Error al cargar la presentación:", error);
+                loader.innerHTML = `
+                    <div style="color: var(--error); text-align: center; max-width: 650px; padding: 24px; background: var(--surface-container); border: 1px solid var(--error-container); border-radius: 6px;">
+                        <h3 style="color: var(--error); margin-bottom: 8px;">DISRUPCIÓN DE TELEMETRÍA // ERROR DE CARGA</h3>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">${error.message}</p>
+                        <p style="font-size: 11px; color: var(--text-dim); line-height: 1.5;">
+                            Las diapositivas modulares se cargan mediante solicitudes asíncronas estándar (Fetch API). Si estás ejecutando el archivo localmente mediante el protocolo <code>file://</code>, por favor inicia un servidor local:<br>
+                            <code style="display:inline-block; margin-top: 6px; padding: 4px 10px; background: var(--surface-low); border: 1px solid var(--border-keyline); color: var(--primary);">python -m http.server 8000</code> o la extensión <strong>Live Server</strong> en VS Code.
+                        </p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+
+</html>

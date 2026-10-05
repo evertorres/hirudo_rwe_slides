@@ -1,0 +1,128 @@
+<!-- Slide 07: Industrialización de Datos — Pipeline OMOP CDM en 9 Pasos y Calidad DQD -->
+<section class="slide" id="slide07" data-coord="SLD_07 // SEC_OMOP_PIPELINE_DQD">
+    <div class="slide-content left">
+        
+        <!-- Header Track -->
+        <div class="slide-title-block">
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px;">
+                <span class="label-kicker" style="margin: 0;">ESTANDARIZACIÓN SEMÁNTICA // ARQUITECTURA OHDSI</span>
+                <span class="badge badge-emerald">EJECUTADO EN SERVINTE CLINICAL SUITE</span>
+            </div>
+            <h2>De Registros Dispares a Grado Científico: Pipeline OHDSI</h2>
+            <p class="lead-text">
+                Industrializamos la estandarización clínica en 9 pasos rigurosos con aceleradores Big Data, con experiencia probada sobre EHRs hospitalarios masivos en Colombia (Servinte).
+            </p>
+        </div>
+
+        <!-- 3-Phase Pipeline Runway (Expansive Body) -->
+        <div class="slide-body-grid grid-3">
+            
+            <!-- Phase 1 -->
+            <div class="card chamfer-card fragment" data-fragment-index="1" style="border-top: 4px solid var(--primary-command); justify-content: space-between;">
+                <div>
+                    <div class="telemetry-meta" style="margin-bottom: var(--space-sm);">
+                        <span>FASE 01 // PASOS 1-4</span>
+                        <span class="badge badge-blue">PERFILADO</span>
+                    </div>
+                    <h3 style="color: var(--text-high); margin-bottom: 8px;">Perfilado &amp; Vocabularios</h3>
+                    <p style="margin-bottom: 12px; color: var(--text-muted); line-height: 1.5;">
+                        Inspección exhaustiva de estructuras locales y frecuencias poblacionales con <strong>White Rabbit</strong>.
+                    </p>
+                    <div style="background: var(--surface-low); padding: clamp(10px, 1.2vh, 14px) clamp(12px, 1.2vw, 16px); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); font-size: clamp(0.8rem, 0.9vw, 0.98rem); line-height: 1.55; color: var(--text-dim); display: flex; flex-direction: column; gap: 5px;">
+                        <div>&bull; Extracción de catálogos y diccionarios hospitalarios</div>
+                        <div>&bull; Búsqueda en <strong>Athena</strong> (SNOMED-CT, RxNorm, LOINC, CIE-10)</div>
+                        <div>&bull; Identificación de términos locales no estándar (59% brecha)</div>
+                    </div>
+                </div>
+                <div style="color: var(--primary); padding-top: 10px; border-top: 1px solid var(--border-subtle); margin-top: 12px; font-weight: 600; font-family: var(--font-mono); font-size: clamp(0.78rem, 0.86vw, 0.94rem);">
+                    &bull; Herramientas: White Rabbit + Athena
+                </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="card chamfer-card fragment" data-fragment-index="2" style="border-top: 4px solid var(--secondary-indigo); justify-content: space-between;">
+                <div>
+                    <div class="telemetry-meta" style="margin-bottom: var(--space-sm);">
+                        <span>FASE 02 // PASOS 5-7</span>
+                        <span class="badge badge-indigo">TRANSFORMACIÓN ETL</span>
+                    </div>
+                    <h3 style="color: var(--text-high); margin-bottom: 8px;">Mapeo &amp; Ingesta Acelerada</h3>
+                    <p style="margin-bottom: 12px; color: var(--text-muted); line-height: 1.5;">
+                        Diseño estructural con <strong>Rabbit-in-a-Hat</strong> y mapeo con <strong>Usagi</strong>, acelerado sobre Apache Spark:
+                    </p>
+                    <div style="background: var(--surface-low); padding: clamp(10px, 1.2vh, 14px) clamp(12px, 1.2vw, 16px); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); font-size: clamp(0.8rem, 0.9vw, 0.98rem); line-height: 1.55; color: var(--text-dim); display: flex; flex-direction: column; gap: 5px;">
+                        <div>&bull; <strong style="color: var(--secondary);">Validado en Servinte:</strong> Pipeline ETL sobre uno de los EHRs más usados en LATAM.</div>
+                        <div>&bull; <strong>SQL on FHIR (<code>ViewDefinition</code>)</strong> estándar</div>
+                        <div>&bull; Motor <strong>Pathling (CSIRO)</strong> sobre clúster Spark</div>
+                    </div>
+                </div>
+                <div style="color: var(--secondary); padding-top: 10px; border-top: 1px solid var(--border-subtle); margin-top: 12px; font-weight: 600; font-family: var(--font-mono); font-size: clamp(0.78rem, 0.86vw, 0.94rem);">
+                    &bull; Acelerador: Pathling + Spark + Servinte
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="card chamfer-card fragment" data-fragment-index="3" style="border-top: 4px solid var(--tertiary-emerald); justify-content: space-between;">
+                <div>
+                    <div class="telemetry-meta" style="margin-bottom: var(--space-sm);">
+                        <span>FASE 03 // PASOS 8-9</span>
+                        <span class="badge badge-emerald">CALIDAD DQD</span>
+                    </div>
+                    <h3 style="color: var(--text-high); margin-bottom: 8px;">Auditoría Automatizada DQD</h3>
+                    <p style="margin-bottom: 12px; color: var(--text-muted); line-height: 1.5;">
+                        Ejecución exhaustiva del <strong>Data Quality Dashboard (DQD)</strong> de OHDSI antes de habilitar consultas:
+                    </p>
+                    <div style="background: var(--surface-low); padding: clamp(10px, 1.2vh, 14px) clamp(12px, 1.2vw, 16px); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); font-size: clamp(0.8rem, 0.9vw, 0.98rem); line-height: 1.55; color: var(--text-dim); display: flex; flex-direction: column; gap: 5px;">
+                        <div>&bull; Plausibilidad clínica y biológica de rangos</div>
+                        <div>&bull; Conformidad matemática y de esquema relacional</div>
+                        <div>&bull; Consistencia temporal y ontológica cruzada</div>
+                    </div>
+                </div>
+                <div style="color: var(--tertiary); padding-top: 10px; border-top: 1px solid var(--border-subtle); margin-top: 12px; font-weight: 600; font-family: var(--font-mono); font-size: clamp(0.78rem, 0.86vw, 0.94rem);">
+                    &bull; Certificación: DQD Benchmark Pass
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Quantitative Telemetry Bar -->
+        <div class="grid-4 fragment" data-fragment-index="4" style="margin-top: clamp(8px, 1.2vh, 16px);">
+            <div class="card telemetry-card">
+                <div class="telemetry-meta">
+                    <span>COBERTURA SEMÁNTICA</span>
+                    <div class="telemetry-indicator indicator-emerald"></div>
+                </div>
+                <div class="telemetry-value" style="color: var(--tertiary);">&gt;80%</div>
+                <div style="font-size: clamp(0.72rem, 0.8vw, 0.88rem); color: var(--text-dim);">MAPEO A CONCEPTOS ESTÁNDAR</div>
+            </div>
+
+            <div class="card telemetry-card">
+                <div class="telemetry-meta">
+                    <span>ÉXITO DQD BENCHMARK</span>
+                    <div class="telemetry-indicator indicator-emerald"></div>
+                </div>
+                <div class="telemetry-value" style="color: var(--tertiary);">98.8%</div>
+                <div style="font-size: clamp(0.72rem, 0.8vw, 0.88rem); color: var(--text-dim);">AOYAGI ET AL., 2026 (ONCOLOGÍA)</div>
+            </div>
+
+            <div class="card telemetry-card">
+                <div class="telemetry-meta">
+                    <span>CONTROLES DE CALIDAD</span>
+                    <div class="telemetry-indicator indicator-blue"></div>
+                </div>
+                <div class="telemetry-value" style="color: var(--primary);">1,991</div>
+                <div style="font-size: clamp(0.72rem, 0.8vw, 0.88rem); color: var(--text-dim);">PRUEBAS AUTOMÁTICAS DQD</div>
+            </div>
+
+            <div class="card telemetry-card">
+                <div class="telemetry-meta">
+                    <span>ACELERACIÓN TEMPORAL</span>
+                    <div class="telemetry-indicator indicator-indigo"></div>
+                </div>
+                <div class="telemetry-value" style="color: var(--secondary);">Semanas</div>
+                <div style="font-size: clamp(0.72rem, 0.8vw, 0.88rem); color: var(--text-dim);">vs. 358 DÍAS EN TRADICIONAL</div>
+            </div>
+        </div>
+
+    </div>
+</section>

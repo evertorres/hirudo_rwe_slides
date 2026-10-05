@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hirudo RWE | Directorio de Módulos & Presentaciones</title>
+    <meta name="description" content="Directorio maestro de presentaciones y cursos de Hirudo RWE (Real World Evidence & Precision Telemetry).">
+    <link rel="stylesheet" href="shared/styles.css">
+    <style>
+        /* Directory-Specific View Styles */
+        body {
+            overflow-y: auto;
+            height: auto;
+            min-height: 100vh;
+        }
+
+        .directory-wrapper {
+            max-width: 1650px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--outer-margin) 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .directory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: var(--space-xl);
+            border-bottom: 1px solid var(--border-keyline);
+            padding-bottom: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+            flex-wrap: wrap;
+        }
+
+        .directory-title-area {
+            max-width: 780px;
+        }
+
+        .directory-stats-area {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            background: var(--surface-container);
+            border: 1px solid var(--border-keyline);
+            border-radius: var(--radius-md);
+            padding: 12px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 140px;
+        }
+
+        .stat-badge .stat-label {
+            font-size: 10px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .stat-badge .stat-num {
+            font-family: var(--font-headline);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-high);
+            line-height: 1;
+        }
+
+        /* Filter Controls */
+        .controls-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+            flex-wrap: wrap;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            background: var(--surface-low);
+            border: 1px solid var(--border-keyline);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 180ms ease;
+        }
+
+        .filter-tab:hover {
+            background: var(--surface-container);
+            color: var(--text-high);
+            border-color: var(--border-highlight);
+        }
+
+        .filter-tab.active {
+            background: var(--primary-command);
+            color: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 0 12px rgba(26, 62, 146, 0.4);
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 280px;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--surface-low);
+            border: 1px solid var(--border-keyline);
+            border-radius: var(--radius-sm);
+            padding: 9px 14px 9px 36px;
+            color: var(--text-high);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            outline: none;
+            transition: border-color 200ms ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(180, 197, 255, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            pointer-events: none;
+        }
+
+        /* Presentation Cards Grid */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--space-xl);
+        }
+
+        .module-card {
+            background: var(--surface-container);
+            border: 1px solid var(--border-keyline);
+            border-radius: var(--radius-md);
+            padding: var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 280px;
+        }
+
+        .module-card:hover {
+            border-color: var(--border-highlight);
+            transform: translateY(-4px);
+            box-shadow: var(--glow-primary);
+        }
+
+        .module-card.available {
+            border-top: 3px solid var(--tertiary-emerald);
+        }
+
+        .module-card.template-featured {
+            border-top: 3px solid var(--primary);
+            background: linear-gradient(180deg, rgba(26, 62, 146, 0.15) 0%, var(--surface-container) 100%);
+        }
+
+        .module-card.pending {
+            border-top: 3px solid var(--surface-high);
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .module-card.pending:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: var(--border-keyline);
+        }
+
+        .module-number {
+            font-family: var(--font-headline);
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-dim);
+            opacity: 0.25;
+            position: absolute;
+            top: var(--space-md);
+            right: var(--space-md);
+            line-height: 1;
+            transition: all 200ms ease;
+            user-select: none;
+        }
+
+        .module-card:hover .module-number {
+            opacity: 0.6;
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .module-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: var(--space-md);
+        }
+
+        .module-title {
+            font-family: var(--font-headline);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-high);
+            line-height: 1.35;
+            margin-bottom: 8px;
+        }
+
+        .module-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin-bottom: var(--space-lg);
+            flex-grow: 1;
+        }
+
+        .module-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--border-subtle);
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        .module-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            color: var(--primary);
+            transition: transform 180ms ease;
+        }
+
+        .module-card:hover .module-action {
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Directory Master Wrapper -->
+    <div class="directory-wrapper">
+        
+        <!-- Header Strip -->
+        <header class="directory-header">
+            <div class="directory-title-area">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                    <span class="hud-brand-dot"></span>
+                    <span class="label-kicker" style="letter-spacing: 0.16em;">ACADEMIA DE CIENCIA DE DATOS EN SALUD</span>
+                </div>
+                <h1 style="font-size: clamp(2.4rem, 3.5vw, 3.4rem); background: linear-gradient(135deg, #f8fafc 0%, #b4c5ff 50%, #6366f1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    Hirudo RWE // Master Repository
+                </h1>
+                <p style="font-size: 1.1rem; line-height: 1.6; color: var(--text-muted); margin-top: 10px;">
+                    Programa de formación avanzada en <strong>Evidencia en el Mundo Real (RWE)</strong>, modelos comunes de datos (OMOP CDM), inferencia causal observacional y bioestadística de precisión.
+                </p>
+            </div>
+
+            <!-- Quantitative Telemetry Badges -->
+            <div class="directory-stats-area">
+                <div class="stat-badge chamfer-card">
+                    <span class="stat-label">Módulos Totales</span>
+                    <span class="stat-num">08</span>
+                </div>
+                <div class="stat-badge chamfer-card">
+                    <span class="stat-label">Plantilla Base</span>
+                    <span class="stat-num" style="color: var(--tertiary);">ONLINE</span>
+                </div>
+                <div class="stat-badge chamfer-card">
+                    <span class="stat-label">Estándar Visual</span>
+                    <span class="stat-num" style="font-size: 1.1rem; color: var(--primary); padding-top: 4px;">DESIGN.md</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Filters and Search Toolbar -->
+        <div class="controls-toolbar">
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">Todos los Módulos</button>
+                <button class="filter-tab" data-filter="executive">Pitch Deck Ejecutivo</button>
+                <button class="filter-tab" data-filter="template">Plantilla Base</button>
+                <button class="filter-tab" data-filter="m1">Módulo 1: Fundamentos</button>
+                <button class="filter-tab" data-filter="m2">Módulo 2: OMOP & OHDSI</button>
+                <button class="filter-tab" data-filter="m3">Módulo 3: Bioestadística</button>
+            </div>
+
+            <div class="search-box">
+                <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" id="directorySearch" placeholder="Buscar por tema, concepto o ID...">
+            </div>
+        </div>
+
+        <!-- Modules Grid -->
+        <div class="module-grid" id="moduleGrid">
+
+            <!-- HIRUDO EXECUTIVE PITCH DECK -->
+            <a href="01_hirudo_one_pager/index.html" class="module-card template-featured chamfer-card" data-category="executive">
+                <span class="module-number" style="font-size: 2.2rem; top: 12px; right: 12px;">DECK</span>
+                <div>
+                    <div class="module-tags">
+                        <span class="badge badge-emerald">EXECUTIVE BRIEFING</span>
+                        <span class="badge badge-blue">DISPONIBLE</span>
+                        <span class="badge badge-outline">14 SLIDES</span>
+                    </div>
+                    <h3 class="module-title">HIRUDO // Master Executive Pitch Deck</h3>
+                    <p class="module-desc">
+                        Desbloqueando la Inteligencia Clínica del Mundo Real sin Extraer Datos Hospitalarios. Modelo dual, validación en 4 pilares, gobernanza Five Safes, pipeline OHDSI, ePROMs y retribución algorítmica.
+                    </p>
+                </div>
+                <div class="module-footer">
+                    <span>ID: <code>01_hirudo_one_pager</code></span>
+                    <span class="module-action">
+                        Abrir Pitch Deck
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </span>
+                </div>
+            </a>
+            
+            <!-- MASTER TEMPLATE CARD -->
+            <a href="00_template/index.html" class="module-card template-featured chamfer-card" data-category="template">
+                <span class="module-number">00</span>
+                <div>
+                    <div class="module-tags">
+                        <span class="badge badge-blue">PLANTILLA MAESTRA</span>
+                        <span class="badge badge-emerald">DISPONIBLE</span>
+                        <span class="badge badge-outline">7 SLIDES</span>
+                    </div>
+                    <h3 class="module-title">Plantilla Maestra // Syntropic Telemetry</h3>
+                    <p class="module-desc">
+                        Estructura completa de presentación con portada unificada, agenda de 4 etapas, diagrama de arquitectura 7:5, métricas con sparklines, separador y diapositiva de agradecimiento.
+                    </p>
+                </div>
+                <div class="module-footer">
+                    <span>ID: <code>00_template</code></span>
+                    <span class="module-action">
+                        Abrir Presentación
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </span>
+                </div>
+            </a>
+
+            <!-- SESSION 01: INTRO TO RWE -->
+            <div class="module-card pending chamfer-card" data-category="m1">
+                <span class="module-number">01</span>
+                <div>
+                    <div class="module-tags">
+                        <span class="badge badge-outline">MÓDULO 1</span>
+                        <span class="badge badge-amber">PRÓXIMAMENTE</span>
+                    </div>
+                    <h3 class="module-title">01. Fundamentos de Datos y Evidencia en la Vida Real</h3>
+                    <p class="module-desc">
+                        De la práctica asistencial al valor analítico: taxonomía de RWD, sesgos observacionales y transición hacia evidencia validada.
+                    </p>
+                </div>
+                <div class="module-footer">
+                    <span>ID: <code>01_fundamentos_rwe</code></span>
+                    <span style="color: var(--text-dim);">En desarrollo</span>
+                </div>
+            </div>
+
+            <!-- SESSION 02: TIPOLOGIAS DE DATOS -->
+            <div class="module-card pending chamfer-card" data-category="m1">
+                <span class="module-number">02</span>
+                <div>
+                    <div class="module-tags">
+                        <span class="badge badge-outline">MÓDULO 1</span>
+                        <span class="badge badge-amber">PRÓXIMAMENTE</span>
+                    </div>
+                    <h3 class="module-title">02. Tipologías y Fuentes de Datos Sanitarios</h3>
+                    <p class="module-desc">
+                        Registros electrónicos de salud (EHR), reclamos de facturación (claims), registros de enfermedades raras y telemetría de wearables.
+                    </p>
+                </div>
+                <div class="module-footer">
+                    <span>ID: <code>02_fuentes_datos</code></span>
+                    <span style="color: var(--text-dim);">En desarrollo</span>
+                </div>
+            </div>
+
+            <!-- SESSION 03: GOBERNANZA Y CALIDAD -->
+            <div class="module-card pending chamfer-card" data-category="m1">
+                <span class="module-number">03</span>
+                <div>
+                    <div class="module-tags">
+                        <span class="badge badge-outline">MÓDULO 1</span>
+                        <span class="badge badge-amber">PRÓXIMAMENTE</span>
+                    </div>
+                    <h3 class="module-title">03. Gobernanza, Privacidad y Marco DQD</h3>
+                    <p class="module-desc">
+                        Control de calidad con Achilles y Data Quality Dashboard. Modelos de privacidad federada y anonimización de microdatos.
+                    </p>
+                </div>
+                <div class="module-footer">
+                    <span>ID: <code>03_gobernanza_dqd</code></span>
+                    <span style="color: var(--text-dim);">En desarrollo</span>
+                </div>
+            </div>
+
+            <!-- SESSION 04: OMOP CDM -->
+            <div class="module-card pending chamfer-card" data-category="m2">
+                <span class="module-number">04</span>
+                <div>
+                    <div class="module-tags">
+                        <span class="badge badge-outline">MÓDULO 2</span>
+                        <span class="badge badge-amber">PRÓXIMAMENTE</span>
+                    </div>
+                    <h3 class="module-title">04. Modelo de Datos Común OMOP CDM v5.4</h3>
+                    <p class="module-desc">
+                        Arquitectura de tablas clínicas, normalización a vocabularios estándar (SNOMED, LOINC, RxNorm) y pipelines de transformación ETL.
+                    </p>
+                </div>
+                <div class="module-footer">
+                    <span>ID: <code>04_omop_cdm</code></span>
+                    <span style="color: var(--text-dim);">En desarrollo</span>
+                </div>
+            </div>
+
+            <!-- SESSION 05: FENOTIPOS & ATLAS -->
+            <div class="module-card pending chamfer-card" data-category="m2">
+                <span class="module-number">05</span>
+                <div>
+                    <div class="module-tags">
+                        <span class="badge badge-outline">MÓDULO 2</span>
+                        <span class="badge badge-amber">PRÓXIMAMENTE</span>
+                    </div>
+                    <h3 class="module-title">05. Fenotipos Computables y Cohortes en OHDSI Atlas</h3>
+                    <p class="module-desc">
+                        Definición determinística y probabilística de cohortes, ventanas temporales de exposición y criterios lógicos de elegibilidad.
+                    </p>
+                </div>
+                <div class="module-footer">
+                    <span>ID: <code>05_fenotipos_atlas</code></span>
+                    <span style="color: var(--text-dim);">En desarrollo</span>
+                </div>
+            </div>
+
+            <!-- SESSION 06: INFERENCIA CAUSAL -->
+            <div class="module-card pending chamfer-card" data-category="m3">
+                <span class="module-number">06</span>
+                <div>
+                    <div class="module-tags">
+                        <span class="badge badge-outline">MÓDULO 3</span>
+                        <span class="badge badge-amber">PRÓXIMAMENTE</span>
+                    </div>
+                    <h3 class="module-title">06. Inferencia Causal: Propensity Score & Supervivencia</h3>
+                    <p class="module-desc">
+                        Neutralización del sesgo de indicación mediante apareamiento por propensión (PSM), IPTW y modelos de riesgos proporcionales de Cox.
+                    </p>
+                </div>
+                <div class="module-footer">
+                    <span>ID: <code>06_inferencia_causal</code></span>
+                    <span style="color: var(--text-dim);">En desarrollo</span>
+                </div>
+            </div>
+
+            <!-- SESSION 07: TRASLACION REGULATORIA -->
+            <div class="module-card pending chamfer-card" data-category="m3">
+                <span class="module-number">07</span>
+                <div>
+                    <div class="module-tags">
+                        <span class="badge badge-outline">MÓDULO 3</span>
+                        <span class="badge badge-amber">PRÓXIMAMENTE</span>
+                    </div>
+                    <h3 class="module-title">07. Efectividad Comparativa y Traslación Regulatoria</h3>
+                    <p class="module-desc">
+                        Guías metodológicas FDA y EMA para estudios de RWE. Integración en comités farmacoterapéuticos y soporte a decisiones clínicas.
+                    </p>
+                </div>
+                <div class="module-footer">
+                    <span>ID: <code>07_traslacion_rwe</code></span>
+                    <span style="color: var(--text-dim);">En desarrollo</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Client-side Directory Filter Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.filter-tab');
+            const cards = document.querySelectorAll('.module-card');
+            const searchInput = document.getElementById('directorySearch');
+
+            let currentFilter = 'all';
+            let searchQuery = '';
+
+            function updateCards() {
+                cards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    const text = card.textContent.toLowerCase();
+
+                    const matchesFilter = currentFilter === 'all' || category === currentFilter;
+                    const matchesSearch = searchQuery === '' || text.includes(searchQuery);
+
+                    if (matchesFilter && matchesSearch) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    currentFilter = tab.getAttribute('data-filter');
+                    updateCards();
+                });
+            });
+
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    searchQuery = e.target.value.toLowerCase().trim();
+                    updateCards();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

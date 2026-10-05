@@ -1,0 +1,105 @@
+<!-- Slide 06: Caso de Estudio y Grid de Datos Comparativos -->
+<section class="slide" id="slide06" data-coord="SLD_06 // SEC_RWE_CASE_STUDY">
+    <div class="slide-content left">
+        
+        <!-- Header Track -->
+        <div class="slide-title-block">
+            <span class="label-kicker">CASO DE ESTUDIO // COMPARATIVE EFFECTIVENESS</span>
+            <h2>Evaluación Multicéntrica de Resultados Cardiovasculares</h2>
+            <p class="lead-text">
+                Análisis observacional comparativo entre inhibidores SGLT-2 vs. agonistas GLP-1 en pacientes con DM2 y alto riesgo cardiovascular.
+            </p>
+        </div>
+
+        <!-- Asymmetric 7:5 Split Layout (Slide Body Grid) -->
+        <div class="slide-body-grid split-7-5">
+            
+            <!-- Left 7fr: Precision Data Spec Grid -->
+            <div class="data-table-container fragment" data-fragment-index="1" style="display: flex; flex-direction: column; justify-content: center;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Parámetro Clínico</th>
+                            <th class="numeric">SGLT-2i (Target)</th>
+                            <th class="numeric">GLP-1 RA (Comp)</th>
+                            <th class="numeric">ASMD Post-PSM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Población Inicial (N)</strong></td>
+                            <td class="numeric">184,230</td>
+                            <td class="numeric">142,880</td>
+                            <td class="numeric" style="color: var(--text-dim);">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Población Apareada (1:1)</strong></td>
+                            <td class="numeric" style="color: var(--primary);">112,450</td>
+                            <td class="numeric" style="color: var(--primary);">112,450</td>
+                            <td class="numeric" style="color: var(--tertiary);">0.008 (Balance)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Edad Media (Años &plusmn; DE)</strong></td>
+                            <td class="numeric">62.4 &plusmn; 8.1</td>
+                            <td class="numeric">62.6 &plusmn; 8.3</td>
+                            <td class="numeric" style="color: var(--tertiary);">0.012</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tasa MACE por 1,000 p-año</strong></td>
+                            <td class="numeric">14.8 [13.9 - 15.7]</td>
+                            <td class="numeric">19.2 [18.1 - 20.4]</td>
+                            <td class="numeric" style="color: var(--primary);">Diff: -4.4</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hazard Ratio Crudo</strong></td>
+                            <td class="numeric" colspan="2" style="text-align: center; color: var(--text-muted);">0.81 [0.74 - 0.88]</td>
+                            <td class="numeric" style="color: var(--text-dim);">p &lt; 0.001</td>
+                        </tr>
+                        <tr style="background: rgba(26, 62, 146, 0.22);">
+                            <td><strong style="color: var(--text-high);">Hazard Ratio Ajustado (PSM)</strong></td>
+                            <td class="numeric" colspan="2" style="text-align: center; color: var(--tertiary); font-weight: 700;">
+                                0.74 [0.68 - 0.81]
+                            </td>
+                            <td class="numeric" style="color: var(--tertiary); font-weight: 700;">p &lt; 0.0001</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Right 5fr: Analytical Insights Card -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between; gap: clamp(10px, 1.4vh, 16px);">
+                
+                <div class="card chamfer-card fragment" data-fragment-index="2" style="border-left: 4px solid var(--tertiary-emerald); padding: clamp(12px, 1.6vh, 18px) clamp(14px, 1.4vw, 20px);">
+                    <div class="telemetry-meta" style="margin-bottom: 6px;">
+                        <span>HALLAZGOS ROBUSTOS</span>
+                        <span class="badge badge-emerald">VALIDADO</span>
+                    </div>
+                    <h4 style="color: var(--text-high); margin-bottom: 6px;">Reducción Significativa de MACE</h4>
+                    <p style="color: var(--text-muted); line-height: 1.55; margin: 0;">
+                        Los datos observacionales demuestran una reducción relativa del <strong>26%</strong> en el riesgo compuesto cardiovascular en el brazo de SGLT-2i, replicando la magnitud de los RCT pivotales.
+                    </p>
+                </div>
+
+                <div class="card chamfer-card fragment" data-fragment-index="3" style="border-left: 4px solid var(--secondary-indigo); padding: clamp(12px, 1.6vh, 18px) clamp(14px, 1.4vw, 20px);">
+                    <div class="telemetry-meta" style="margin-bottom: 6px;">
+                        <span>ANÁLISIS DE SENSIBILIDAD</span>
+                        <span class="badge badge-indigo">E-VALUE 2.14</span>
+                    </div>
+                    <h4 style="color: var(--text-high); margin-bottom: 6px;">E-Value = 2.14</h4>
+                    <p style="color: var(--text-muted); line-height: 1.55; margin: 0;">
+                        Un factor de confusión no medido necesitaría estar asociado tanto con la prescripción como con el desenlace por un riesgo relativo superior a 2.14 para anular el efecto observado.
+                    </p>
+                </div>
+
+                <!-- Code / Query Spec Pill -->
+                <div style="background: var(--surface-low); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: clamp(8px, 1.2vh, 12px) clamp(12px, 1.2vw, 16px); font-family: var(--font-mono); font-size: clamp(0.78rem, 0.86vw, 0.94rem); color: var(--text-dim); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                    <span>COHORT_ID: #89201_DM2_MACE</span>
+                    <span style="color: var(--primary);">DATABASE: OMOP_SYNPUF_2M</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
