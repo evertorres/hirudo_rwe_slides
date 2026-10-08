@@ -1,0 +1,261 @@
+<!-- Slide 03: El Panorama de Estándares — ¿Dónde Encaja OMOP CDM? -->
+<section class="slide" id="slide03" data-coord="SLD_03 // SEC_STANDARDS_MAP">
+    <div class="slide-content left" style="max-width: 1420px; width: 100%; display: flex; flex-direction: column; justify-content: center;">
+        
+        <!-- Section Header -->
+        <div style="margin-bottom: clamp(14px, 2vh, 22px);">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <span class="badge badge-indigo">ARQUITECTURA DE DATOS</span>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em;">TAXONOMÍA DE ESTÁNDARES EN SALUD</span>
+            </div>
+            <h2 style="font-size: clamp(1.8rem, 2.4vw, 2.8rem); color: var(--text-high); font-family: var(--font-headline); letter-spacing: -0.02em;">
+                El Mapa de Estándares: Cada Herramienta en su Dominio
+            </h2>
+            <p style="font-size: clamp(0.92rem, 1vw, 1.1rem); color: var(--text-muted); max-width: 1100px; margin-top: 4px;">
+                Uno de los errores más frecuentes en los comités de TI es confundir estándares de intercambio transaccional con estándares de persistencia y analítica poblacional.
+            </p>
+        </div>
+
+        <style>
+            #slide03 .standard-card {
+                background: var(--surface-container);
+                border: 1px solid var(--border-keyline);
+                border-radius: var(--radius-sm);
+                padding: 8px 12px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                transition: transform 0.2s ease, border-color 0.2s ease;
+            }
+            #slide03 .standard-card:hover {
+                transform: translateY(-2px);
+                border-color: rgba(255, 255, 255, 0.25);
+            }
+            #slide03 .standard-card-featured {
+                background: rgba(16, 185, 129, 0.12);
+                border: 1.5px solid #10b981;
+                border-radius: var(--radius-sm);
+                padding: 12px 14px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                box-shadow: 0 0 16px rgba(16, 185, 129, 0.2);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+            #slide03 .standard-card-featured:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 0 22px rgba(16, 185, 129, 0.35);
+            }
+            #slide03 .logo-thumb {
+                background: #ffffff;
+                border-radius: 4px;
+                padding: 3px 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            }
+        </style>
+
+        <!-- 3-Column Architectural Classification: Intercambio (Izq) // Terminología (Centro) // Persistencia (Der) -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 24px); align-items: stretch; margin-bottom: clamp(14px, 2vh, 20px);">
+            
+            <!-- Column 1 (Izquierda): Estándares de Intercambio de Datos -->
+            <div class="diagram-container" style="border-top: 4px solid #818cf8; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-family: var(--font-mono); font-size: 12px; color: #818cf8; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">DOMINIO 01</span>
+                        <span class="badge badge-indigo" style="font-size: 11px;">COMUNICACIÓN & FLUJO</span>
+                    </div>
+                    <h3 style="color: var(--text-high); font-size: clamp(1.2rem, 1.4vw, 1.55rem); margin-bottom: 6px; font-family: var(--font-headline);">
+                        Intercambio de Datos
+                    </h3>
+                    <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.45; margin-bottom: 14px;">
+                        Protocolos y formatos de mensaje para comunicar sistemas clínicos en el punto de atención (EHR &rarr; App &rarr; Portal).
+                    </p>
+
+                    <!-- Tech Cards / Standards with Logos -->
+                    <div style="display: flex; flex-direction: column; gap: 9px;">
+                        <!-- HL7 FHIR -->
+                        <div class="standard-card">
+                            <div class="logo-thumb" style="width: 76px; height: 42px;">
+                                <img src="images/slide03_hl7_FHIR_logo.png" alt="HL7 FHIR" style="max-height: 34px; max-width: 68px; object-fit: contain;">
+                            </div>
+                            <div style="flex: 1; min-width: 0;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <strong style="color: var(--text-high); font-size: 14px;">HL7 FHIR</strong>
+                                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--secondary); font-weight: 600;">APIs REST</span>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-dim); line-height: 1.35; margin-top: 2px;">Recursos RESTful JSON/XML para interoperabilidad operativa</div>
+                            </div>
+                        </div>
+
+                        <!-- HL7 CDA & v2 -->
+                        <div class="standard-card">
+                            <div class="logo-thumb" style="width: 82px; height: 42px; gap: 4px; padding: 2px 4px;">
+                                <img src="images/slide03_hl7_logo.png" alt="HL7" style="max-height: 24px; max-width: 34px; object-fit: contain;">
+                                <img src="images/slide03_hl7_CDA_logo.png" alt="HL7 CDA" style="max-height: 24px; max-width: 40px; object-fit: contain;">
+                            </div>
+                            <div style="flex: 1; min-width: 0;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <strong style="color: var(--text-high); font-size: 14px;">HL7 CDA & v2</strong>
+                                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--secondary); font-weight: 600;">Documentos</span>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-dim); line-height: 1.35; margin-top: 2px;">Documentos clínicos estructurados y mensajería heredada</div>
+                            </div>
+                        </div>
+
+                        <!-- DICOM & IHE -->
+                        <div class="standard-card">
+                            <div class="logo-thumb" style="width: 82px; height: 42px; gap: 4px; padding: 2px 4px;">
+                                <img src="images/slide03_dicom_logo.png" alt="DICOM" style="max-height: 24px; max-width: 36px; object-fit: contain;">
+                                <img src="images/slide03_IHE_logo.png" alt="IHE" style="max-height: 24px; max-width: 38px; object-fit: contain;">
+                            </div>
+                            <div style="flex: 1; min-width: 0;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <strong style="color: var(--text-high); font-size: 14px;">DICOM & IHE</strong>
+                                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--secondary); font-weight: 600;">Imagenología</span>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-dim); line-height: 1.35; margin-top: 2px;">Imágenes diagnósticas y perfiles de integración de flujos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-keyline); font-size: 12px; color: var(--text-dim);">
+                    <em>¿Qué define?</em> Cómo viaja un evento o mensaje clínico específico entre servidores en vivo.
+                </div>
+            </div>
+
+            <!-- Column 2 (Mitad): Terminologías & Clasificación -->
+            <div class="diagram-container" style="border-top: 4px solid #38bdf8; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-family: var(--font-mono); font-size: 12px; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">DOMINIO 02</span>
+                        <span class="badge badge-blue" style="font-size: 11px;">SEMÁNTICA & SIGNIFICADO</span>
+                    </div>
+                    <h3 style="color: var(--text-high); font-size: clamp(1.2rem, 1.4vw, 1.55rem); margin-bottom: 6px; font-family: var(--font-headline);">
+                        Terminologías & Clasificación
+                    </h3>
+                    <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.45; margin-bottom: 14px;">
+                        Diccionarios ontológicos y clasificaciones clínicas que codifican conceptos específicos sin ambigüedad.
+                    </p>
+
+                    <!-- Tech Cards / Standards with Logos -->
+                    <div style="display: flex; flex-direction: column; gap: 9px;">
+                        <!-- SNOMED CT -->
+                        <div class="standard-card">
+                            <div class="logo-thumb" style="width: 76px; height: 42px;">
+                                <img src="images/slide03_snomedctlogo.png" alt="SNOMED CT" style="max-height: 32px; max-width: 68px; object-fit: contain;">
+                            </div>
+                            <div style="flex: 1; min-width: 0;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <strong style="color: var(--text-high); font-size: 14px;">SNOMED CT</strong>
+                                    <span style="font-family: var(--font-mono); font-size: 11px; color: #38bdf8; font-weight: 600;">Semántica</span>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-dim); line-height: 1.35; margin-top: 2px;">Ontología clínica integral (hallazgos, procedimientos)</div>
+                            </div>
+                        </div>
+
+                        <!-- LOINC -->
+                        <div class="standard-card">
+                            <div class="logo-thumb" style="width: 76px; height: 42px;">
+                                <img src="images/slide03_loinclogo.png" alt="LOINC" style="max-height: 32px; max-width: 68px; object-fit: contain;">
+                            </div>
+                            <div style="flex: 1; min-width: 0;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <strong style="color: var(--text-high); font-size: 14px;">LOINC</strong>
+                                    <span style="font-family: var(--font-mono); font-size: 11px; color: #38bdf8; font-weight: 600;">Laboratorio</span>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-dim); line-height: 1.35; margin-top: 2px;">Observaciones y resultados de laboratorio clínico universales</div>
+                            </div>
+                        </div>
+
+                        <!-- CIE-11 & RxNorm -->
+                        <div class="standard-card">
+                            <div class="logo-thumb" style="width: 76px; height: 42px;">
+                                <img src="images/slide03_icd11_logo.png" alt="CIE-11" style="max-height: 34px; max-width: 68px; object-fit: contain;">
+                            </div>
+                            <div style="flex: 1; min-width: 0;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <strong style="color: var(--text-high); font-size: 14px;">CIE-11 / CIE-10</strong>
+                                    <span style="font-family: var(--font-mono); font-size: 11px; color: #38bdf8; font-weight: 600;">Clasificación</span>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-dim); line-height: 1.35; margin-top: 2px;">Clasificación epidemiológica (OMS) y fármacos (RxNorm)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-keyline); font-size: 12px; color: var(--text-dim);">
+                    <em>¿Qué define?</em> El vocabulario médico controlado y la jerarquía de conceptos.
+                </div>
+            </div>
+
+            <!-- Column 3 (Derecha): Estándares de Persistencia (OMOP CDM) -->
+            <div class="diagram-container" style="border-top: 4px solid #10b981; border: 1.5px solid rgba(16, 185, 129, 0.45); box-shadow: var(--glow-emerald); display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, var(--surface-low) 100%);">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-family: var(--font-mono); font-size: 12px; color: #10b981; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">DOMINIO 03 // EL FOCO</span>
+                        <span class="badge badge-emerald" style="font-size: 11px;">ANALÍTICA & RWE</span>
+                    </div>
+                    <h3 style="color: var(--tertiary); font-size: clamp(1.2rem, 1.4vw, 1.55rem); margin-bottom: 6px; font-family: var(--font-headline);">
+                        Estándares de Persistencia
+                    </h3>
+                    <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.45; margin-bottom: 14px;">
+                        Estructura relacional unificada diseñada específicamente para análisis longitudinal masivo, bioestadística y ensayos clínicos.
+                    </p>
+
+                    <!-- Tech Cards / Standards with Logos -->
+                    <div style="display: flex; flex-direction: column; gap: 9px;">
+                        <!-- OMOP CDM (OHDSI) - FEATURED -->
+                        <div class="standard-card-featured">
+                            <div class="logo-thumb" style="width: 88px; height: 44px;">
+                                <img src="images/slide03_ohdsi-logo-with-text.png" alt="OHDSI OMOP CDM" style="max-height: 38px; max-width: 82px; object-fit: contain;">
+                            </div>
+                            <div style="flex: 1; min-width: 0;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <strong style="color: #6ee7b7; font-size: 14.5px;">OMOP CDM (OHDSI)</strong>
+                                    <span class="badge badge-emerald" style="font-size: 11px; padding: 2px 7px;">LÍDER MUNDIAL</span>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-high); font-weight: 500; margin-top: 2px; line-height: 1.35;">Estándar de Oro Global para Real-World Evidence & Ensayos</div>
+                            </div>
+                        </div>
+
+                        <!-- openEHR -->
+                        <div class="standard-card">
+                            <div class="logo-thumb" style="width: 76px; height: 42px;">
+                                <img src="images/slide03_openehr_logo.png" alt="openEHR" style="max-height: 32px; max-width: 68px; object-fit: contain;">
+                            </div>
+                            <div style="flex: 1; min-width: 0;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <strong style="color: var(--text-high); font-size: 14px;">openEHR</strong>
+                                    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); font-weight: 600;">EHR Core</span>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-dim); line-height: 1.35; margin-top: 2px;">Arquetipos clínicos para repositorios e historias electrónicas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(16, 185, 129, 0.25); font-size: 12px; color: #a7f3d0;">
+                    <em>¿Qué define?</em> Cómo se organiza toda la historia del paciente para inferencia causal, cohortes y estudios multicéntricos.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Technical Synthesis Banner: FHIR vs OMOP -->
+        <div style="background: var(--surface-container); border: 1px solid var(--border-keyline); border-radius: var(--radius-sm); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 10px; height: 10px; border-radius: 50%; background: #6366f1; flex-shrink: 0;"></div>
+                <span style="font-size: 13.5px; color: var(--text-high); line-height: 1.45;">
+                    <strong>Regla Práctica para el Comité de TI:</strong> <em>"FHIR y OMOP no compiten; son socios naturales."</em> FHIR traslada eventos clínicos transaccionales entre sistemas; <strong>OMOP CDM consolida la historia longitudinal del paciente para analítica masiva y ensayos clínicos sin sobrecargar el sistema transaccional.</strong>
+                </span>
+            </div>
+            <span class="badge badge-indigo" style="flex-shrink: 0; font-size: 11px;">SINERGIA ARQUITECTÓNICA</span>
+        </div>
+
+    </div>
+</section>

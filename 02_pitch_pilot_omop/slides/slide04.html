@@ -1,0 +1,92 @@
+<!-- Slide 04: OMOP CDM v5.4 — El "Adaptador Universal" en Salud -->
+<section class="slide" id="slide04" data-coord="SLD_04 // SEC_OMOP_ADAPTER">
+    <div class="slide-content left" style="max-width: 1420px; width: 100%; display: flex; flex-direction: column; justify-content: center;">
+        
+        <!-- Section Header -->
+        <div style="margin-bottom: clamp(12px, 1.6vh, 18px);">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <span class="badge badge-blue">OHDSI CDM v5.4</span>
+                <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em;">EL ESTÁNDAR MAESTRO</span>
+            </div>
+            <h2 style="font-size: clamp(1.8rem, 2.4vw, 2.8rem); color: var(--text-high); font-family: var(--font-headline); letter-spacing: -0.02em;">
+                OMOP CDM v5.4: El "Adaptador Universal" de los Datos Clínicos
+            </h2>
+            <p style="font-size: clamp(0.92rem, 1vw, 1.1rem); color: var(--text-muted); max-width: 1100px; margin-top: 4px;">
+                Resuelve simultáneamente el reto de la <strong>sintaxis</strong> (tablas y campos uniformes) y de la <strong>semántica</strong> (significado médico normalizado sin alterar los datos originales).
+            </p>
+        </div>
+
+        <!-- Dual Architecture: Syntactic + Semantic Interoperability with Visual Diagrams -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.8vw, 22px); align-items: stretch; margin-bottom: clamp(12px, 1.6vh, 18px);">
+            
+            <!-- Block A: Interoperabilidad Sintáctica (Estructura Relacional) -->
+            <div class="diagram-container" style="border-left: 4px solid #3b82f6; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(12px, 1.6vh, 18px);">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span class="badge badge-blue">SINTAXIS</span>
+                            <h3 style="color: var(--text-high); font-size: clamp(1.08rem, 1.25vw, 1.35rem); font-family: var(--font-headline); margin: 0;">
+                                Interoperabilidad Sintáctica
+                            </h3>
+                        </div>
+                        <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--primary);">Esquema CDM v5.4</span>
+                    </div>
+                    <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.45;">
+                        Estructura relacional fija y homogénea centrada en el paciente. Cualquier hospital del mundo comparte exactamente los mismos nombres de campos y tablas clínicas estandarizadas.
+                    </p>
+
+                    <!-- Image Diagram: CDM v5.4 Schema -->
+                    <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-keyline); border-radius: var(--radius-sm); padding: 8px; display: flex; justify-content: center; align-items: center; min-height: 170px; max-height: 220px; overflow: hidden; position: relative;">
+                        <img src="images/slide04_cdm_v54.png" alt="Esquema Relacional OMOP CDM v5.4" class="zoomable-image" style="max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 4px; cursor: zoom-in;" title="Clic para ampliar esquema CDM v5.4">
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px; background: rgba(59, 130, 246, 0.08); border-radius: 4px; padding: 7px 12px; font-size: 12px; color: #bfdbfe; font-family: var(--font-mono);">
+                    &bull; Dominios clínicos: <code>PERSON</code>, <code>VISIT</code>, <code>CONDITION</code>, <code>DRUG</code>, <code>MEASUREMENT</code>.
+                </div>
+            </div>
+
+            <!-- Block B: Interoperabilidad Semántica (Vocabularios ATHENA) -->
+            <div class="diagram-container" style="border-left: 4px solid #f59e0b; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(12px, 1.6vh, 18px);">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span class="badge badge-amber">SEMÁNTICA</span>
+                            <h3 style="color: var(--text-high); font-size: clamp(1.08rem, 1.25vw, 1.35rem); font-family: var(--font-headline); margin: 0;">
+                                Interoperabilidad Semántica
+                            </h3>
+                        </div>
+                        <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--amber-warning); font-weight: 600;">Jerarquías ATHENA</span>
+                    </div>
+                    <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.45;">
+                        Estandarización ontológica de conceptos médicos. Mapea términos heterogéneos y resuelve relaciones jerárquicas multinivel para consultas poblacionales automáticas.
+                    </p>
+
+                    <!-- Image Diagram: Concept Ancestor Hierarchy -->
+                    <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-keyline); border-radius: var(--radius-sm); padding: 8px; display: flex; justify-content: center; align-items: center; min-height: 170px; max-height: 220px; overflow: hidden; position: relative;">
+                        <img src="images/slide04_jerarquia_conceptos.png" alt="Jerarquía de Conceptos OMOP" class="zoomable-image" style="max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 4px; cursor: zoom-in;" title="Clic para ampliar jerarquía de conceptos">
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px; background: rgba(245, 158, 11, 0.08); border-radius: 4px; padding: 7px 12px; font-size: 12px; color: #fef3c7; font-family: var(--font-mono);">
+                    &bull; Tablas ontológicas: <code>CONCEPT</code>, <code>CONCEPT_RELATIONSHIP</code>, <code>CONCEPT_ANCESTOR</code>.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Universal Adapter Analogy Banner -->
+        <div style="background: linear-gradient(90deg, rgba(26, 62, 146, 0.25) 0%, rgba(99, 102, 241, 0.2) 100%); border: 1px solid var(--border-active); border-radius: var(--radius-sm); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+            <div style="display: flex; align-items: center; gap: 14px;">
+                <div style="width: 38px; height: 38px; border-radius: 6px; background: var(--surface-container); border: 1px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">
+                    🔌
+                </div>
+                <div style="font-size: 13.5px; color: var(--text-high); line-height: 1.45;">
+                    <strong>La Metáfora del Adaptador de Viaje:</strong> Así como un adaptador universal permite enchufar cualquier dispositivo en cualquier país sin cambiar los circuitos eléctricos, <strong>OMOP CDM permite que cualquier HCE se conecte a la investigación mundial sin alterar las bases de datos transaccionales del hospital</strong>.
+                </div>
+            </div>
+            <span class="badge badge-emerald" style="flex-shrink: 0; font-size: 11px;">COMPATIBILIDAD GLOBAL</span>
+        </div>
+
+    </div>
+</section>

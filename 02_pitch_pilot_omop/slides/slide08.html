@@ -1,0 +1,763 @@
+<!-- Slide 08: Del Dato Crudo a la Evidencia Confiable (Pipeline Integral de Industrialización OHDSI) -->
+<section class="slide" id="slide08" data-coord="SLD_08 // SEC_OHDSI_PIPELINE">
+    <div class="slide-content left" style="max-width: 1440px; width: 100%;">
+        
+        <!-- Section Header (Spacious, prominent and authoritative) -->
+        <div style="margin-bottom: clamp(8px, 1.2vh, 14px);">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+                <span class="badge badge-blue" style="font-size: 11.5px; padding: 4px 10px;">METODOLOGÍA CIENTÍFICA</span>
+                <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">
+                    PIPELINE INTEGRAL DE INDUSTRIALIZACIÓN
+                </span>
+            </div>
+            <h2 style="font-size: clamp(1.85rem, 2.5vw, 2.85rem); color: var(--text-high); font-family: var(--font-headline); letter-spacing: -0.02em; line-height: 1.15; margin: 2px 0 4px 0;">
+                Del Dato Crudo a la Evidencia Confiable: El Ecosistema OHDSI
+            </h2>
+            <p style="font-size: clamp(0.95rem, 1.1vw, 1.2rem); color: var(--text-muted); max-width: 1250px; line-height: 1.4; margin: 0;">
+                Transformar datos hospitalarios no es una labor artesanal de programación. OHDSI provee una suite de herramientas de código abierto probadas en cientos de centros mundiales para garantizar calidad matemática, reproducibilidad y auditoría clínica continua.
+            </p>
+        </div>
+
+        <style>
+            /* ==========================================================================
+               Slide 08: Expansive Dynamic Pipeline Layout & Typography
+               ========================================================================== */
+
+            /* Master Slide Content: Fills available screen space comfortably */
+            #slide08 .slide-content {
+                width: 100% !important;
+                max-width: 1440px !important;
+                min-height: calc(100vh - clamp(85px, 10vh, 115px)) !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+                gap: clamp(10px, 1.4vh, 18px) !important;
+            }
+
+            /* Main Pipeline Canvas fills and expands to occupy available space */
+            #slide08 .pipeline-canvas {
+                flex: 1;
+                display: grid;
+                grid-template-columns: 1.15fr 34px 1.72fr 34px 1.15fr 34px 1.35fr;
+                align-items: stretch;
+                gap: 0;
+                min-height: clamp(350px, 44vh, 450px);
+                margin: 0;
+            }
+
+            /* Stage Columns - Clean, balanced height */
+            #slide08 .flow-zone {
+                background: var(--surface-low);
+                border: 1px solid var(--border-keyline);
+                border-radius: var(--radius-md);
+                padding: clamp(12px, 1.5vh, 18px) clamp(12px, 1.2vw, 18px);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                position: relative;
+                transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+                cursor: pointer;
+            }
+            #slide08 .flow-zone:hover {
+                transform: translateY(-3px);
+                background: var(--surface-container);
+                box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+            }
+            #slide08 .flow-zone.dimmed {
+                opacity: 0.32;
+                filter: grayscale(35%);
+            }
+            #slide08 .flow-zone.highlighted {
+                opacity: 1;
+                filter: none;
+                transform: translateY(-3px);
+            }
+
+            /* Zone Accents & Neon Highlights */
+            #slide08 .zone-extract { border-top: 4px solid #38bdf8; }
+            #slide08 .zone-extract.highlighted,
+            #slide08 .zone-extract:hover { border-color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.28); }
+
+            #slide08 .zone-transform { border-top: 4px solid #a855f7; }
+            #slide08 .zone-transform.highlighted,
+            #slide08 .zone-transform:hover { border-color: #a855f7; box-shadow: 0 0 20px rgba(168, 85, 247, 0.28); }
+
+            #slide08 .zone-load { border-top: 4px solid #f59e0b; }
+            #slide08 .zone-load.highlighted,
+            #slide08 .zone-load:hover { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.28); }
+
+            #slide08 .zone-evidence { border-top: 4px solid #10b981; }
+            #slide08 .zone-evidence.highlighted,
+            #slide08 .zone-evidence:hover { border-color: #10b981; box-shadow: 0 0 20px rgba(16, 185, 129, 0.28); }
+
+            /* Zone Headers */
+            #slide08 .zone-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: clamp(10px, 1.4vh, 16px);
+            }
+            #slide08 .zone-title-tag {
+                font-family: var(--font-mono);
+                font-size: clamp(13px, 0.95vw, 15px);
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+            }
+            #slide08 .zone-badge {
+                font-size: 11.5px;
+                font-family: var(--font-mono);
+                padding: 3px 8px;
+                border-radius: 4px;
+                text-transform: uppercase;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+            }
+
+            /* Inter-zone Directional Arrow Connectors */
+            #slide08 .flow-connector {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+            #slide08 .flow-arrow-svg {
+                width: 24px;
+                height: 24px;
+                color: var(--text-dim);
+                animation: pulse-arrow 2.2s infinite ease-in-out;
+            }
+            @keyframes pulse-arrow {
+                0%, 100% { transform: translateX(0); opacity: 0.5; color: var(--text-dim); }
+                50% { transform: translateX(4px); opacity: 1; color: var(--primary); }
+            }
+
+            /* Large, Generous Node Capsules */
+            #slide08 .node-capsule {
+                background: var(--surface-container);
+                border: 1px solid var(--border-keyline);
+                border-radius: 6px;
+                padding: clamp(7px, 1vh, 10px) clamp(10px, 0.9vw, 14px);
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+            }
+            #slide08 .node-capsule:hover {
+                background: rgba(30, 41, 59, 0.9);
+                border-color: rgba(255, 255, 255, 0.28);
+                transform: translateX(2px);
+            }
+
+            /* Tool Icons & Logos (Clean, Transparent, White Logos on Dark) */
+            #slide08 .tool-tile {
+                height: 38px;
+                width: 38px;
+                border-radius: 6px;
+                object-fit: contain;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+                flex-shrink: 0;
+            }
+            #slide08 .tool-icon-circle {
+                width: 38px;
+                height: 38px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                flex-shrink: 0;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+            }
+            /* Dark transparent wrapper for white logos */
+            #slide08 .tool-logo-dark-wrap {
+                height: 38px;
+                min-width: 38px;
+                padding: 1px 4px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+            #slide08 .white-logo-img {
+                max-height: 32px;
+                max-width: 74px;
+                object-fit: contain;
+                filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+            }
+
+            /* Node Typography */
+            #slide08 .node-info {
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+                flex: 1;
+            }
+            #slide08 .node-name {
+                font-family: var(--font-headline);
+                font-size: clamp(14.5px, 1.05vw, 16.5px);
+                font-weight: 700;
+                color: var(--text-high);
+                line-height: 1.25;
+            }
+            #slide08 .node-desc {
+                font-family: var(--font-mono);
+                font-size: clamp(12.5px, 0.9vw, 13.5px);
+                color: var(--text-muted);
+                line-height: 1.35;
+                margin-top: 2px;
+            }
+
+            /* Dual-Track Layout in Stage 02 */
+            #slide08 .dual-track-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            #slide08 .track-row {
+                display: grid;
+                grid-template-columns: 1fr 22px 1fr;
+                align-items: center;
+                gap: 8px;
+            }
+            #slide08 .track-arrow {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-dim);
+                font-size: 15px;
+                font-weight: bold;
+            }
+
+            /* Deliverable Banner (Bottom of each Zone) */
+            #slide08 .zone-deliverable {
+                margin-top: clamp(8px, 1.1vh, 14px);
+                padding: 8px 12px;
+                border-radius: 6px;
+                font-size: clamp(12px, 0.9vw, 13.5px);
+                font-family: var(--font-mono);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-weight: 700;
+                line-height: 1.3;
+            }
+
+            /* ==========================================================================
+               Centered Bottom Timeline & Standardized Synthesis Banner (Matches Slides 04, 06, 09, 10)
+               ========================================================================== */
+            #slide08 .slide08-footer-cluster {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+                margin-top: 0;
+            }
+            #slide08 .bottom-timeline-nav {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+                position: relative;
+            }
+            #slide08 .timeline-track {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: clamp(8px, 1.2vw, 18px);
+                background: rgba(5, 20, 36, 0.95);
+                border: 1px solid var(--border-keyline);
+                border-radius: 30px;
+                padding: 5px 18px;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            }
+            #slide08 .timeline-btn {
+                background: none;
+                border: none;
+                color: var(--text-muted);
+                font-family: var(--font-mono);
+                font-size: clamp(12px, 0.9vw, 13px);
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 4px 12px;
+                border-radius: 20px;
+                transition: all 0.2s ease;
+                white-space: nowrap;
+            }
+            #slide08 .timeline-btn:hover {
+                color: var(--text-high);
+                background: rgba(255, 255, 255, 0.08);
+            }
+            #slide08 .timeline-btn.active {
+                background: rgba(30, 41, 59, 0.95);
+                color: var(--text-high);
+                font-weight: 700;
+                border: 1px solid var(--primary);
+                box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+            }
+            #slide08 .timeline-badge-num {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 22px;
+                height: 22px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.12);
+                color: var(--text-high);
+                font-size: 11px;
+                font-weight: 700;
+            }
+            #slide08 .timeline-btn.active .timeline-badge-num {
+                background: var(--primary);
+                color: #030d1a;
+            }
+            #slide08 .timeline-divider {
+                width: 24px;
+                height: 2px;
+                background: var(--border-keyline);
+                border-radius: 1px;
+            }
+
+            /* Standardized Synthesis Banner (Matches Slides 04, 06, 09, 10 exactly) */
+            #slide08 .slide08-synthesis-banner {
+                background: var(--surface-container);
+                border: 1px solid var(--border-keyline);
+                border-radius: var(--radius-sm);
+                padding: clamp(11px, 1.3vh, 14px) 18px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+                width: 100%;
+                box-sizing: border-box;
+                transition: all 0.25s ease;
+            }
+            #slide08 .synthesis-icon-box {
+                width: 38px;
+                height: 38px;
+                border-radius: 6px;
+                background: rgba(16, 185, 129, 0.15);
+                border: 1px solid var(--tertiary);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                flex-shrink: 0;
+                transition: all 0.25s ease;
+            }
+            #slide08 .synthesis-text {
+                font-size: clamp(13px, 0.95vw, 14px);
+                color: var(--text-high);
+                line-height: 1.45;
+            }
+        </style>
+
+        <!-- Recreated Visual ETL Pipeline Canvas (Fills the Stage Generously) -->
+        <div class="pipeline-canvas" id="slide08Canvas">
+            
+            <!-- STAGE 01: EXTRACT (Perfilado) -->
+            <div class="flow-zone zone-extract" id="zone1" onclick="window.setSlide08Stage('1')">
+                <div>
+                    <div class="zone-header">
+                        <span class="zone-title-tag" style="color: #38bdf8;">01. EXTRACT</span>
+                        <span class="zone-badge" style="background: rgba(56, 189, 248, 0.15); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.3);">
+                            PERFILADO
+                        </span>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: clamp(8px, 1.1vh, 12px);">
+                        <!-- Datos Origen -->
+                        <div class="node-capsule" title="Bases de datos origen del hospital">
+                            <div class="tool-icon-circle" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #7dd3fc;">
+                                🗄️
+                            </div>
+                            <div class="node-info">
+                                <span class="node-name" style="font-size: 15.5px;">Datos Clínicos Origen</span>
+                                <span class="node-desc" style="font-size: 12.5px;">HCE, LIS, RIS, Facturación</span>
+                            </div>
+                        </div>
+
+                        <!-- Flecha conectora interna -->
+                        <div style="display: flex; justify-content: center; color: #38bdf8; font-size: 14px; opacity: 0.8;">
+                            ▼
+                        </div>
+
+                        <!-- White Rabbit -->
+                        <div class="node-capsule" title="White Rabbit (OHDSI) - Perfilamiento estadístico no invasivo">
+                            <img src="images/slide08_whiterabbit_logo.png" alt="White Rabbit" class="tool-tile">
+                            <div class="node-info">
+                                <span class="node-name" style="font-size: 15.5px;">White Rabbit</span>
+                                <span class="node-desc" style="font-size: 12.5px;">Escaneo estadístico sin extraer PII</span>
+                            </div>
+                        </div>
+
+                        <div style="background: var(--surface-void); border: 1px dashed rgba(56, 189, 248, 0.35); border-radius: 6px; padding: 8px 10px; font-family: var(--font-mono); font-size: 12px; color: #bae6fd; line-height: 1.5;">
+                            &bull; Volumen y frecuencias de tablas<br>
+                            &bull; Completitud y tipos de datos<br>
+                            &bull; Cómputo 100% en servidor local
+                        </div>
+                    </div>
+                </div>
+
+                <div class="zone-deliverable" style="background: rgba(56, 189, 248, 0.12); color: #bae6fd; border: 1px solid rgba(56, 189, 248, 0.35);">
+                    <span style="font-size: 16px;">📄</span>
+                    <span>Informe de Perfilamiento</span>
+                </div>
+            </div>
+
+            <!-- Inter-zone Flow Connector 1 -> 2 -->
+            <div class="flow-connector">
+                <svg class="flow-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <polyline points="13 5 20 12 13 19"></polyline>
+                </svg>
+            </div>
+
+            <!-- STAGE 02: TRANSFORM (Mapeo Dual: Estructural + Terminológico) -->
+            <div class="flow-zone zone-transform" id="zone2" onclick="window.setSlide08Stage('2')">
+                <div>
+                    <div class="zone-header">
+                        <span class="zone-title-tag" style="color: #c084fc;">02. TRANSFORM</span>
+                        <span class="zone-badge" style="background: rgba(168, 85, 247, 0.15); color: #e9d5ff; border: 1px solid rgba(168, 85, 247, 0.3);">
+                            MAPEO DUAL
+                        </span>
+                    </div>
+
+                    <div class="dual-track-container">
+                        <!-- Rama Superior: Estructural (Rabbit In a Hat -> Mapping Doc) -->
+                        <div class="track-row">
+                            <div class="node-capsule" style="padding: 7px 10px;" title="Rabbit In a Hat (OHDSI) - Diseño ETL tabla a tabla">
+                                <img src="images/slide08_rabbitinahat_logo.png" alt="Rabbit In a Hat" class="tool-tile" style="height: 38px; width: 38px;">
+                                <div class="node-info">
+                                    <span class="node-name" style="font-size: 14px;">Rabbit In Hat</span>
+                                    <span class="node-desc" style="font-size: 12px;">Mapeo visual tabla-tabla</span>
+                                </div>
+                            </div>
+                            <div class="track-arrow">➔</div>
+                            <div class="node-capsule" style="padding: 7px 10px;" title="Documento formal de especificación ETL">
+                                <div style="font-size: 20px; flex-shrink: 0;">📑</div>
+                                <div class="node-info">
+                                    <span class="node-name" style="font-size: 14px;">Mapping Doc</span>
+                                    <span class="node-desc" style="font-size: 12px;">Especificación técnica</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rama Inferior: Semántica (ATHENA -> Usagi) con logos blancos sobre fondo oscuro -->
+                        <div class="track-row">
+                            <div class="node-capsule" style="padding: 7px 10px;" title="Vocabularios Estandarizados ATHENA (SNOMED, RxNorm, LOINC)">
+                                <div class="tool-logo-dark-wrap">
+                                    <img src="images/slide08_athena_logo.png" alt="ATHENA" class="white-logo-img" style="max-height: 32px;">
+                                </div>
+                                <div class="node-info">
+                                    <span class="node-name" style="font-size: 14px;">ATHENA</span>
+                                    <span class="node-desc" style="font-size: 12px;">Vocabularios estándar</span>
+                                </div>
+                            </div>
+                            <div class="track-arrow">➔</div>
+                            <div class="node-capsule" style="padding: 7px 10px;" title="Usagi (OHDSI) - Mapeo asistido con IA a conceptos estándar">
+                                <img src="images/slide08_usagi_logo.png" alt="Usagi" class="tool-tile" style="height: 38px; width: 38px;">
+                                <div class="node-info">
+                                    <span class="node-name" style="font-size: 14px;">Usagi</span>
+                                    <span class="node-desc" style="font-size: 12px;">Mapeo a SNOMED</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Convergencia hacia el Motor de Implementación ETL -->
+                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px; padding-top: 8px; border-top: 1px dashed rgba(168, 85, 247, 0.4);">
+                            <div style="font-size: 16px; color: #c084fc; font-weight: bold;">↳</div>
+                            <div class="node-capsule" style="flex: 1; padding: 8px 14px; background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.45);" title="Implementación de scripts y pipelines de transformación">
+                                <div class="tool-icon-circle" style="background: rgba(168, 85, 247, 0.25); border: 1px solid #c084fc; color: #f3e8ff; width: 38px; height: 38px; font-size: 19px;">
+                                    ⚙️
+                                </div>
+                                <div class="node-info">
+                                    <span class="node-name" style="font-size: 15px; color: #f3e8ff;">Implementación & Scripts ETL</span>
+                                    <span class="node-desc" style="font-size: 12.5px; color: #d8b4fe;">Pipelines automatizados de transformación SQL / R</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="zone-deliverable" style="background: rgba(168, 85, 247, 0.12); color: #e9d5ff; border: 1px solid rgba(168, 85, 247, 0.35);">
+                    <span style="font-size: 16px;">📐</span>
+                    <span>Especificación ETL & Código Fuente</span>
+                </div>
+            </div>
+
+            <!-- Inter-zone Flow Connector 2 -> 3 -->
+            <div class="flow-connector">
+                <svg class="flow-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
+
+            <!-- STAGE 03: LOAD (Carga Estandarizada OMOP CDM) -->
+            <div class="flow-zone zone-load" id="zone3" onclick="window.setSlide08Stage('3')">
+                <div>
+                    <div class="zone-header">
+                        <span class="zone-title-tag" style="color: #fbbf24;">03. LOAD</span>
+                        <span class="zone-badge" style="background: rgba(245, 158, 11, 0.15); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.3);">
+                            PERSISTENCIA
+                        </span>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: clamp(8px, 1.1vh, 12px);">
+                        <div class="node-capsule" style="background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.45); padding: 8px 12px;" title="Repositorio Normalizado OMOP CDM v5.4">
+                            <div class="tool-icon-circle" style="background: rgba(245, 158, 11, 0.25); border: 1px solid #f59e0b; font-size: 19px; width: 38px; height: 38px;">
+                                🛡️
+                            </div>
+                            <div class="node-info">
+                                <span class="node-name" style="color: #fef3c7; font-size: 15.5px;">OMOP CDM v5.4</span>
+                                <span class="node-desc" style="color: #fde68a; font-size: 12.5px;">Modelo Relacional Común</span>
+                            </div>
+                        </div>
+
+                        <!-- Tablas Canónicas Estructuradas -->
+                        <div style="background: var(--surface-void); border: 1px dashed rgba(245, 158, 11, 0.35); border-radius: 6px; padding: 8px 12px; font-family: var(--font-mono); font-size: 12.5px; color: #fde68a; line-height: 1.55;">
+                            &bull; <strong>PERSON</strong> // Pacientes únicos<br>
+                            &bull; <strong>VISIT_OCCURRENCE</strong> // Atenciones<br>
+                            &bull; <strong>CONDITION_OCCURRENCE</strong> // CIE<br>
+                            &bull; <strong>DRUG_EXPOSURE</strong> // Fármacos<br>
+                            &bull; <strong>MEASUREMENT</strong> // Laboratorio
+                        </div>
+
+                        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); text-align: center; border: 1px solid var(--border-keyline); border-radius: 4px; padding: 4px 8px;">
+                            🔒 Servidores Propios / On-Premise
+                        </div>
+                    </div>
+                </div>
+
+                <div class="zone-deliverable" style="background: rgba(245, 158, 11, 0.12); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.35);">
+                    <span style="font-size: 16px;">🗄️</span>
+                    <span>Repositorio Canónico CDM v5.4</span>
+                </div>
+            </div>
+
+            <!-- Inter-zone Flow Connector 3 -> 4 -->
+            <div class="flow-connector">
+                <svg class="flow-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <polyline points="12 5 20 12 12 19"></polyline>
+                </svg>
+            </div>
+
+            <!-- STAGE 04: QUALITY & EVIDENCE (Auditoría DQD & Analítica ATLAS) -->
+            <div class="flow-zone zone-evidence" id="zone4" onclick="window.setSlide08Stage('4')">
+                <div>
+                    <div class="zone-header">
+                        <span class="zone-title-tag" style="color: #34d399;">04. EVIDENCE</span>
+                        <span class="zone-badge" style="background: rgba(16, 185, 129, 0.15); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, 0.3);">
+                            CALIDAD & RWE
+                        </span>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: clamp(8px, 1.1vh, 12px);">
+                        <!-- Achilles & DQD Dashboard (Logo Blanco sobre Fondo Oscuro) -->
+                        <div class="node-capsule" style="padding: 8px 12px;" title="Data Quality Dashboard (DQD) - Más de 3,500 reglas de validación automática">
+                            <div class="tool-logo-dark-wrap">
+                                <img src="images/slide08_dqd_logo.png" alt="DQD" class="white-logo-img" style="max-height: 32px;">
+                            </div>
+                            <div class="node-info">
+                                <span class="node-name" style="font-size: 15px; color: #a7f3d0;">Achilles & DQD</span>
+                                <span class="node-desc" style="font-size: 12.5px;">+3,500 Reglas de Calidad</span>
+                            </div>
+                        </div>
+
+                        <!-- Flecha interna -->
+                        <div style="display: flex; justify-content: center; color: #34d399; font-size: 14px; opacity: 0.8;">
+                            ▼
+                        </div>
+
+                        <!-- ATLAS & HADES (Logo sobre Fondo Oscuro) -->
+                        <div class="node-capsule" style="padding: 8px 12px;" title="ATLAS & HADES (OHDSI) - Plataforma visual de investigación clínica y RWE">
+                            <div class="tool-logo-dark-wrap">
+                                <img src="images/slide08_atlas_logo.png" alt="ATLAS" class="white-logo-img" style="max-height: 32px;">
+                            </div>
+                            <div class="node-info">
+                                <span class="node-name" style="font-size: 15px; color: #ffffff;">ATLAS & HADES</span>
+                                <span class="node-desc" style="font-size: 12.5px;">Cohortes, Sobrevida & RWE</span>
+                            </div>
+                        </div>
+
+                        <div style="background: var(--surface-void); border: 1px dashed rgba(16, 185, 129, 0.35); border-radius: 6px; padding: 8px 12px; font-family: var(--font-mono); font-size: 12.5px; color: #a7f3d0; line-height: 1.5;">
+                            &bull; Plausibilidad clínica y conformidad<br>
+                            &bull; Centinela continuo en cada ingesta<br>
+                            &bull; Evidencia de grado regulatorio
+                        </div>
+                    </div>
+                </div>
+
+                <div class="zone-deliverable" style="background: rgba(16, 185, 129, 0.14); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, 0.35);">
+                    <span style="font-size: 16px;">🏆</span>
+                    <span>Certificado DQD & Evidencia RWE</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Controls & Standard Synthesis Banner Cluster (Consistent with slides 03, 04, 06, 09, 10) -->
+        <div class="slide08-footer-cluster">
+            
+            <!-- Centered Bottom Breadcrumb Line: Points 01, 02, 03, 04 as a Connected Line -->
+            <div class="bottom-timeline-nav">
+                <div class="timeline-track">
+                    <button class="timeline-btn active" data-stage="all" onclick="window.setSlide08Stage('all')" title="Ver todo el flujo integrado">
+                        <span class="timeline-badge-num">⚡</span>
+                        <span>FLUJO COMPLETO</span>
+                    </button>
+                    
+                    <div class="timeline-divider"></div>
+
+                    <button class="timeline-btn" data-stage="1" onclick="window.setSlide08Stage('1')" title="Etapa 01: Extracción y Perfilado">
+                        <span class="timeline-badge-num">01</span>
+                        <span>EXTRACT</span>
+                    </button>
+
+                    <div class="timeline-divider"></div>
+
+                    <button class="timeline-btn" data-stage="2" onclick="window.setSlide08Stage('2')" title="Etapa 02: Transformación y Mapeo Dual">
+                        <span class="timeline-badge-num">02</span>
+                        <span>TRANSFORM</span>
+                    </button>
+
+                    <div class="timeline-divider"></div>
+
+                    <button class="timeline-btn" data-stage="3" onclick="window.setSlide08Stage('3')" title="Etapa 03: Carga y Persistencia CDM">
+                        <span class="timeline-badge-num">03</span>
+                        <span>LOAD</span>
+                    </button>
+
+                    <div class="timeline-divider"></div>
+
+                    <button class="timeline-btn" data-stage="4" onclick="window.setSlide08Stage('4')" title="Etapa 04: Calidad DQD y Evidencia ATLAS">
+                        <span class="timeline-badge-num">04</span>
+                        <span>EVIDENCE</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Standardized Highlight Banner (Identical in style and structure to slides 03, 04, 06, 09, 10) -->
+            <div class="slide08-synthesis-banner" id="pipelineTelemetryConsole">
+                <div style="display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0;">
+                    <div class="synthesis-icon-box" id="telemetryIconBox">
+                        🔄
+                    </div>
+                    <div class="synthesis-text">
+                        <strong id="telemetryTitle">Gobernanza de Datos y Calidad Certificable:</strong>
+                        <span id="telemetryDesc" style="color: var(--text-muted); margin-left: 4px;">El Data Quality Dashboard (DQD) actúa como un centinela automatizado que evalúa cada nueva carga antes de impactar la investigación. Toda la transformación se ejecuta bajo gobernanza del hospital, asegurando rigor científico internacional.</span>
+                    </div>
+                </div>
+                <span class="badge badge-emerald" id="telemetryBadge" style="flex-shrink: 0; font-size: 11px; transition: all 0.25s ease;">RIGOR CERTIFICABLE</span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Self-Contained Interactive Controller Script -->
+<script>
+    (function () {
+        // Stage definition database combining diagram flow and slide technical metadata
+        const stageData = {
+            'all': {
+                icon: '🔄',
+                iconBg: 'rgba(16, 185, 129, 0.15)',
+                iconBorder: 'var(--tertiary)',
+                title: 'Gobernanza de Datos y Calidad Certificable:',
+                desc: 'El Data Quality Dashboard (DQD) actúa como un centinela automatizado que evalúa cada nueva carga antes de impactar la investigación. Toda la transformación se ejecuta bajo gobernanza del hospital, asegurando rigor científico internacional.',
+                badgeClass: 'badge badge-emerald',
+                badgeText: 'RIGOR CERTIFICABLE'
+            },
+            '1': {
+                icon: '🐇',
+                iconBg: 'rgba(56, 189, 248, 0.15)',
+                iconBorder: '#38bdf8',
+                title: 'White Rabbit (Perfilamiento no Invasivo):',
+                desc: 'Escanea automáticamente las bases origen (HCE, LIS, RIS) para evaluar volumen y completitud. Cómputo 100% local en el hospital sin extraer ningún dato confidencial (PII).',
+                badgeClass: 'badge badge-blue',
+                badgeText: 'INFORME DE PERFILADO'
+            },
+            '2': {
+                icon: '🎩',
+                iconBg: 'rgba(99, 102, 241, 0.15)',
+                iconBorder: '#6366f1',
+                title: 'Rabbit In a Hat & Usagi (Mapeo Dual):',
+                desc: 'Rabbit In a Hat genera la especificación gráfica tabla a tabla, mientras Usagi y ATHENA traducen diagnósticos y fármacos a vocabularios estándar mundiales (SNOMED-CT, RxNorm, LOINC).',
+                badgeClass: 'badge badge-indigo',
+                badgeText: 'ESPECIFICACIÓN & ETL'
+            },
+            '3': {
+                icon: '🛡️',
+                iconBg: 'rgba(245, 158, 11, 0.15)',
+                iconBorder: '#f59e0b',
+                title: 'OMOP CDM v5.4 (Repositorio Normalizado):',
+                desc: 'Carga industrializada en tablas canónicas (Person, Visit, Condition, Drug, Measurement) en servidores propios del hospital, lista para estudios federados sin duplicidad de esfuerzo.',
+                badgeClass: 'badge badge-amber',
+                badgeText: 'REPOSITORIO CANÓNICO'
+            },
+            '4': {
+                icon: '🔬',
+                iconBg: 'rgba(16, 185, 129, 0.15)',
+                iconBorder: '#10b981',
+                title: 'DQD Dashboard & ATLAS (Calidad y Evidencia):',
+                desc: 'DQD ejecuta más de 3,500 reglas de validación emitiendo un certificado de calidad auditable, mientras ATLAS habilita el diseño visual de cohortes y estudios RWE de grado regulatorio.',
+                badgeClass: 'badge badge-emerald',
+                badgeText: 'CERTIFICADO DQD & ATLAS'
+            }
+        };
+
+        // Global stage selector for Slide 08
+        window.setSlide08Stage = function (stageId) {
+            const data = stageData[stageId] || stageData['all'];
+            const zones = document.querySelectorAll('#slide08 .flow-zone');
+            const btns = document.querySelectorAll('#slide08 .timeline-btn');
+
+            // Update bottom timeline buttons active state
+            btns.forEach(btn => {
+                if (btn.getAttribute('data-stage') === stageId) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Update zones highlight / dimming
+            zones.forEach((zone, idx) => {
+                const zoneNumber = (idx + 1).toString();
+                if (stageId === 'all') {
+                    zone.classList.remove('dimmed', 'highlighted');
+                } else if (zoneNumber === stageId) {
+                    zone.classList.add('highlighted');
+                    zone.classList.remove('dimmed');
+                } else {
+                    zone.classList.add('dimmed');
+                    zone.classList.remove('highlighted');
+                }
+            });
+
+            // Update bottom highlight banner
+            const iconBox = document.getElementById('telemetryIconBox');
+            const title = document.getElementById('telemetryTitle');
+            const desc = document.getElementById('telemetryDesc');
+            const badge = document.getElementById('telemetryBadge');
+
+            if (iconBox) {
+                iconBox.textContent = data.icon;
+                iconBox.style.background = data.iconBg;
+                iconBox.style.borderColor = data.iconBorder;
+            }
+            if (title) title.textContent = data.title;
+            if (desc) desc.textContent = data.desc;
+            if (badge) {
+                badge.className = data.badgeClass;
+                badge.textContent = data.badgeText;
+            }
+        };
+    })();
+</script>

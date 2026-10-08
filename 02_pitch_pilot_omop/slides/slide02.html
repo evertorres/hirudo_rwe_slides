@@ -1,0 +1,219 @@
+<!-- Slide 02: El Problema — La Trampa de los Silos Clínicos -->
+<section class="slide" id="slide02" data-coord="SLD_02 // SEC_DATA_SILOS">
+    <div class="slide-content left" style="max-width: 1420px; width: 100%; display: flex; flex-direction: column; justify-content: center;">
+        
+        <!-- Section Header -->
+        <div style="margin-bottom: clamp(14px, 2vh, 22px);">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <span class="badge badge-amber">EL PROBLEMA // ESTADO ACTUAL</span>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em;">ARQUITECTURA TRADICIONAL EN HOSPITALES</span>
+            </div>
+            <h2 style="font-size: clamp(1.8rem, 2.4vw, 2.8rem); color: var(--text-high); font-family: var(--font-headline); letter-spacing: -0.02em;">
+                La Trampa de los Silos: Sin un Modelo Común, la Evidencia se Fractura
+            </h2>
+            <p style="font-size: clamp(0.92rem, 1vw, 1.1rem); color: var(--text-muted); max-width: 1100px; margin-top: 4px;">
+                Cada área hospitalaria almacena información bajo estructuras propietarias y códigos locales incompatibles. Cada estudio debe empezar desde cero, consumiendo meses en limpieza y generando hallazgos no comparables.
+            </p>
+        </div>
+
+        <style>
+            #slide02 .system-card {
+                background: var(--surface-low);
+                border: 1px solid var(--border-keyline);
+                border-radius: var(--radius-sm);
+                padding: clamp(10px, 1.2vh, 14px) clamp(12px, 1.2vw, 16px);
+                transition: transform 0.2s ease, border-color 0.2s ease;
+                text-align: left;
+            }
+            #slide02 .system-card:hover {
+                transform: translateY(-2px);
+                background: var(--surface-container);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+            #slide02 .system-label {
+                font-weight: 700;
+                font-size: clamp(1rem, 1.12vw, 1.22rem);
+                margin-bottom: 4px;
+                font-family: var(--font-headline);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            #slide02 .system-desc {
+                font-size: clamp(0.85rem, 0.92vw, 0.98rem);
+                color: var(--text-muted);
+                line-height: 1.4;
+            }
+            #slide02 .spaghetti-box {
+                border-radius: var(--radius-sm);
+                border: 1px solid rgba(239, 68, 68, 0.35);
+                background: rgba(239, 68, 68, 0.08);
+                padding: clamp(10px, 1.2vh, 14px) 16px;
+            }
+        </style>
+
+        <!-- Sistemas Clínicos Fragmentados & Diagrama SVG de Interconexiones Punto a Punto -->
+        <div style="display: grid; grid-template-columns: 1.18fr 0.82fr; gap: clamp(14px, 1.8vw, 24px); align-items: stretch; margin-bottom: clamp(12px, 1.8vh, 18px);">
+            
+            <!-- Columna Izquierda: Tarjetas de Sistemas Clínicos + Alerta Desafío -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 10px;">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                    
+                    <!-- Card 1: EHR -->
+                    <div class="system-card" style="border-left: 4px solid #3b82f6;">
+                        <div class="system-label" style="color: #60a5fa;">EHR</div>
+                        <div class="system-desc">Electronic Health Record: El núcleo de la historia clínica digital.</div>
+                    </div>
+
+                    <!-- Card 2: RIS/PACS -->
+                    <div class="system-card" style="border-left: 4px solid #a855f7;">
+                        <div class="system-label" style="color: #c084fc;">RIS / PACS</div>
+                        <div class="system-desc">Imagenología: RX, TAC, RM y visualización DICOM.</div>
+                    </div>
+
+                    <!-- Card 3: LIS -->
+                    <div class="system-card" style="border-left: 4px solid #10b981;">
+                        <div class="system-label" style="color: #34d399;">LIS</div>
+                        <div class="system-desc">Laboratorio: Resultados, órdenes y trazabilidad de muestras.</div>
+                    </div>
+
+                    <!-- Card 4: PIS -->
+                    <div class="system-card" style="border-left: 4px solid #f59e0b;">
+                        <div class="system-label" style="color: #fbbf24;">PIS</div>
+                        <div class="system-desc">Farmacia: Inventarios, dispensación y seguridad de dosis.</div>
+                    </div>
+
+                    <!-- Card 5: OIS -->
+                    <div class="system-card" style="border-left: 4px solid #ec4899;">
+                        <div class="system-label" style="color: #f472b6;">OIS</div>
+                        <div class="system-desc">Oncología: Ciclos de quimioterapia y seguimiento oncológico.</div>
+                    </div>
+
+                    <!-- Card 6: Devices -->
+                    <div class="system-card" style="border-left: 4px solid #64748b;">
+                        <div class="system-label" style="color: #94a3b8;">DISPOSITIVOS</div>
+                        <div class="system-desc">Monitores de signos vitales, bombas y wearables.</div>
+                    </div>
+                </div>
+
+                <!-- Desafío Message -->
+                <div class="spaghetti-box">
+                    <p style="margin: 0; color: #fca5a5; font-size: clamp(0.88rem, 0.95vw, 1.05rem); line-height: 1.45;">
+                        <strong style="color: #ef4444;">⚠️ El Desafío:</strong> Las conexiones punto a punto ("espagueti de integraciones") son costosas, frágiles y riesgosas para la seguridad clínica.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Diagram Container con SVG de Interconexión de Sistemas -->
+            <div class="diagram-container" style="display: flex; flex-direction: column; justify-content: space-between; padding: clamp(12px, 1.5vh, 16px); background: var(--surface-low); border: 1px solid var(--border-keyline); border-radius: var(--radius-sm);">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                    <h4 style="font-size: 1.05rem; color: #60a5fa; margin: 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--font-headline);">
+                        Ecosistema Fragmentado
+                    </h4>
+                    <span class="badge badge-red" style="font-size: 11px; padding: 2px 8px;">PUNTO A PUNTO</span>
+                </div>
+                
+                <!-- SVG Diagram: Interconexión de Sistemas de Información -->
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center; min-height: 230px;">
+                    <svg viewBox="0 0 460 290" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 250px; display: block;">
+                        <defs>
+                            <marker id="arrow-both-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                <path d="M 8 2 L 2 5 L 8 8" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </marker>
+                            <marker id="arrow-both-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                <path d="M 2 2 L 8 5 L 2 8" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </marker>
+                            <filter id="node-glow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#1e40af" flood-opacity="0.45" />
+                            </filter>
+                        </defs>
+
+                        <!-- Connection Lines (Malla punto a punto) -->
+                        <g stroke="#ef4444" stroke-width="1.6" stroke-dasharray="3 3" opacity="0.85">
+                            <!-- EHR <--> RIS -->
+                            <line x1="203" y1="66" x2="107" y2="130" marker-start="url(#arrow-both-start)" marker-end="url(#arrow-both-end)"/>
+                            <!-- EHR <--> LIS -->
+                            <line x1="257" y1="66" x2="353" y2="130" marker-start="url(#arrow-both-start)" marker-end="url(#arrow-both-end)"/>
+                            <!-- EHR <--> Devices -->
+                            <line x1="211" y1="74" x2="96" y2="230" marker-start="url(#arrow-both-start)" marker-end="url(#arrow-both-end)"/>
+                            <!-- EHR <--> PIS -->
+                            <line x1="230" y1="80" x2="230" y2="228" marker-start="url(#arrow-both-start)" marker-end="url(#arrow-both-end)"/>
+                            <!-- EHR <--> OIS -->
+                            <line x1="249" y1="74" x2="364" y2="230" marker-start="url(#arrow-both-start)" marker-end="url(#arrow-both-end)"/>
+                            <!-- RIS <--> LIS -->
+                            <line x1="112" y1="145" x2="348" y2="145" marker-start="url(#arrow-both-start)" marker-end="url(#arrow-both-end)"/>
+                            <!-- LIS <--> OIS -->
+                            <line x1="376" y1="172" x2="379" y2="225" marker-start="url(#arrow-both-start)" marker-end="url(#arrow-both-end)"/>
+                        </g>
+
+                        <!-- System Nodes -->
+                        <!-- 1. EHR (Core / Hub) -->
+                        <g filter="url(#node-glow)">
+                            <circle cx="230" cy="48" r="32" fill="#1e40af" stroke="#60a5fa" stroke-width="2.5"/>
+                            <text x="230" y="44" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">EHR</text>
+                            <text x="230" y="58" font-family="'JetBrains Mono', monospace" font-weight="600" font-size="8" fill="#93c5fd" text-anchor="middle" dominant-baseline="middle">NÚCLEO</text>
+                        </g>
+
+                        <!-- 2. RIS / PACS -->
+                        <g>
+                            <circle cx="85" cy="145" r="27" fill="#4c1d95" stroke="#c084fc" stroke-width="2"/>
+                            <text x="85" y="141" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="12" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">RIS</text>
+                            <text x="85" y="154" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#e9d5ff" text-anchor="middle" dominant-baseline="middle">PACS</text>
+                        </g>
+
+                        <!-- 3. LIS -->
+                        <g>
+                            <circle cx="375" cy="145" r="27" fill="#064e3b" stroke="#34d399" stroke-width="2"/>
+                            <text x="375" y="141" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="12" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">LIS</text>
+                            <text x="375" y="154" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#a7f3d0" text-anchor="middle" dominant-baseline="middle">LAB</text>
+                        </g>
+
+                        <!-- 4. Devices -->
+                        <g>
+                            <circle cx="80" cy="252" r="27" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+                            <text x="80" y="248" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="10.5" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">Devices</text>
+                            <text x="80" y="261" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#cbd5e1" text-anchor="middle" dominant-baseline="middle">UCI / MON</text>
+                        </g>
+
+                        <!-- 5. PIS -->
+                        <g>
+                            <circle cx="230" cy="255" r="27" fill="#78350f" stroke="#fbbf24" stroke-width="2"/>
+                            <text x="230" y="251" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="12" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">PIS</text>
+                            <text x="230" y="264" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#fde68a" text-anchor="middle" dominant-baseline="middle">FARMACIA</text>
+                        </g>
+
+                        <!-- 6. OIS -->
+                        <g>
+                            <circle cx="380" cy="252" r="27" fill="#831843" stroke="#f472b6" stroke-width="2"/>
+                            <text x="380" y="248" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="12" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">OIS</text>
+                            <text x="380" y="261" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#fbcfe8" text-anchor="middle" dominant-baseline="middle">ONCO</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 3 Empirical Telemetry Cards -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.6vw, 20px);">
+            <div class="card" style="padding: clamp(12px, 1.6vh, 18px);">
+                <div class="metric-label">DEMORA EN ARMONIZACIÓN MULTICÉNTRICA</div>
+                <div class="metric-value" style="color: #ffb4ab; font-size: clamp(1.8rem, 2.2vw, 2.6rem); margin: 4px 0;">358 días</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.45;">Mediana de tiempo requerida para conciliar variables entre múltiples hospitales de forma manual.</p>
+            </div>
+
+            <div class="card" style="padding: clamp(12px, 1.6vh, 18px);">
+                <div class="metric-label">CÓDIGOS LOCALES NO ESTANDARIZADOS</div>
+                <div class="metric-value" style="color: var(--amber-warning); font-size: clamp(1.8rem, 2.2vw, 2.6rem); margin: 4px 0;">59%</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.45;">Proporción promedio de términos y abreviaciones en HCE que nadie fuera del hospital comprende (Voss et al., JAMIA).</p>
+            </div>
+
+            <div class="card" style="padding: clamp(12px, 1.6vh, 18px);">
+                <div class="metric-label">CAPACIDAD INSTALADA REUTILIZABLE</div>
+                <div class="metric-value" style="color: var(--primary); font-size: clamp(1.8rem, 2.2vw, 2.6rem); margin: 4px 0;">0%</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.45;">Sin OMOP, el esfuerzo de limpieza de un estudio muere con ese estudio. Cada nueva pregunta vuelve al inicio.</p>
+            </div>
+        </div>
+
+    </div>
+</section>

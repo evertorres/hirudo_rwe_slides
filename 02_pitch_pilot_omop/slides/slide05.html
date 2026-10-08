@@ -1,0 +1,495 @@
+<!-- Slide 05: Preguntas a lo Largo del Viaje del Paciente -->
+<section class="slide" id="slide05" data-coord="SLD_05 // SEC_PATIENT_JOURNEY">
+    <div class="slide-content left" style="max-width: 1420px; width: 100%; display: flex; flex-direction: column; justify-content: center;">
+        
+        <!-- Section Header -->
+        <div style="margin-bottom: clamp(12px, 1.6vh, 18px);">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <span class="badge badge-emerald">VALOR CLÍNICO EN ACCIÓN</span>
+                <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em;">ARQUETIPOS DE INVESTIGACIÓN OBSERVACIONAL</span>
+            </div>
+            <h2 style="font-size: clamp(1.8rem, 2.4vw, 2.8rem); color: var(--text-high); font-family: var(--font-headline); letter-spacing: -0.02em;">
+                Las Preguntas Médicas en la Trayectoria del Paciente
+            </h2>
+            <p style="font-size: clamp(0.92rem, 1vw, 1.1rem); color: var(--text-muted); max-width: 1100px; margin-top: 4px;">
+                Al representar toda la historia clínica en un eje temporal continuo y estandarizado, OMOP CDM responde con rigor matemático a las tres grandes preguntas de la medicina contemporánea.
+            </p>
+        </div>
+
+        <!-- Enhanced Longitudinal Patient Timeline (Inspired by Horvath K. Health Care Timeline) -->
+        <style>
+            #slide05 .timeline-node {
+                cursor: pointer;
+                transform-box: fill-box;
+                transform-origin: center;
+                transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease, opacity 0.25s ease;
+            }
+            #slide05 .timeline-node:hover {
+                transform: scale(1.15);
+                filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.9));
+            }
+            #slide05 .timeline-node.dimmed {
+                opacity: 0.18;
+                filter: grayscale(80%);
+            }
+            #slide05 .timeline-node.active-highlight {
+                transform: scale(1.18);
+                filter: drop-shadow(0 0 14px #38bdf8);
+            }
+            #slide05 .domain-filter-btn {
+                background: var(--surface-low);
+                border: 1px solid var(--border-keyline);
+                color: var(--text-muted);
+                font-family: var(--font-mono);
+                font-size: 11px;
+                padding: 3px 9px;
+                border-radius: 12px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                white-space: nowrap;
+            }
+            #slide05 .domain-filter-btn:hover {
+                color: var(--text-high);
+                border-color: var(--primary);
+                background: rgba(56, 189, 248, 0.12);
+            }
+            #slide05 .domain-filter-btn.active {
+                background: rgba(30, 41, 59, 0.95);
+                color: var(--text-high);
+                border-color: var(--primary);
+                font-weight: 700;
+                box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+            }
+        </style>
+
+        <div class="diagram-container" style="padding: clamp(10px, 1.3vh, 14px) clamp(12px, 1.5vw, 18px); margin-bottom: clamp(10px, 1.4vh, 16px);">
+            <!-- Timeline Top Bar: Title & Domain Filter Controls -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--primary); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">
+                        EJE TEMPORAL LONGITUDINAL DEL PACIENTE (MODELO OMOP CDM)
+                    </span>
+                    <span style="font-size: 10.5px; color: var(--text-dim); font-family: var(--font-mono);">[Pasa el cursor o haz clic en los hitos]</span>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 6px;" id="domainFilterGroup">
+                    <button class="domain-filter-btn active" data-domain="all" onclick="window.filterPatientTimeline('all')">Todos</button>
+                    <button class="domain-filter-btn" data-domain="condition" onclick="window.filterPatientTimeline('condition')">🩺 Condiciones</button>
+                    <button class="domain-filter-btn" data-domain="drug" onclick="window.filterPatientTimeline('drug')">💊 Medicamentos</button>
+                    <button class="domain-filter-btn" data-domain="procedure" onclick="window.filterPatientTimeline('procedure')">🔬 Procedimientos</button>
+                    <button class="domain-filter-btn" data-domain="measurement" onclick="window.filterPatientTimeline('measurement')">🧪 Mediciones</button>
+                </div>
+            </div>
+
+            <!-- SVG Timeline Graphic (Horvath-inspired Layout with Emojis directly on rail) -->
+            <svg width="100%" height="135" viewBox="0 0 1000 135" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; display: block; overflow: visible;">
+                <defs>
+                    <marker id="arrow-rail" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 1 2 L 7 5 L 1 8 z" fill="#64748b"/>
+                    </marker>
+                    <filter id="glow-t0" x="-30%" y="-30%" width="160%" height="160%">
+                        <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#ef4444" flood-opacity="0.9"/>
+                    </filter>
+                </defs>
+
+                <!-- Top Zone Header Strips (Cleanly isolated at y = 6..26 to prevent any collision) -->
+                <!-- Baseline Header Strip (T < 0) -->
+                <rect x="25" y="6" width="455" height="20" rx="4" fill="rgba(30, 58, 138, 0.25)" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1"/>
+                <text x="35" y="19" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#38bdf8" letter-spacing="0.07em">⏮️ LÍNEA BASE (T &lt; 0) // HISTORIAL, COMORBILIDADES &amp; COVARIABLES</text>
+
+                <!-- Follow-up Header Strip (T > 0) -->
+                <rect x="515" y="6" width="460" height="20" rx="4" fill="rgba(16, 185, 129, 0.15)" stroke="rgba(16, 185, 129, 0.35)" stroke-width="1"/>
+                <text x="525" y="19" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#34d399" letter-spacing="0.07em">⏭️ SEGUIMIENTO (T &gt; 0) // EFECTIVIDAD, SEGURIDAD &amp; DESENLACES</text>
+
+                <!-- Background Zone Panels (T < 0 and T > 0) -->
+                <rect x="25" y="28" width="455" height="102" rx="6" fill="rgba(30, 58, 138, 0.08)" stroke="rgba(56, 189, 248, 0.2)" stroke-dasharray="4 4" stroke-width="1"/>
+                <rect x="515" y="28" width="460" height="102" rx="6" fill="rgba(16, 185, 129, 0.06)" stroke="rgba(16, 185, 129, 0.2)" stroke-dasharray="4 4" stroke-width="1"/>
+
+                <!-- Index Divider Line at T=0 -->
+                <line x1="495" y1="26" x2="495" y2="130" stroke="#ef4444" stroke-width="1.8" stroke-dasharray="3 3" opacity="0.6"/>
+
+                <!-- Main Longitudinal Rail (Horizontal Arrow at y = 75) -->
+                <line x1="25" y1="75" x2="975" y2="75" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow-rail)"/>
+
+                <!-- Routine Clinical Visits (Horvath-style Encounters directly on rail) -->
+                <g opacity="0.75">
+                    <ellipse cx="130" cy="75" rx="3.5" ry="7" fill="rgba(56, 189, 248, 0.35)" stroke="#38bdf8" stroke-width="0.8"/>
+                    <ellipse cx="225" cy="75" rx="3.5" ry="7" fill="rgba(56, 189, 248, 0.35)" stroke="#38bdf8" stroke-width="0.8"/>
+                    <ellipse cx="330" cy="75" rx="3.5" ry="7" fill="rgba(56, 189, 248, 0.35)" stroke="#38bdf8" stroke-width="0.8"/>
+                    <ellipse cx="440" cy="75" rx="3.5" ry="7" fill="rgba(56, 189, 248, 0.35)" stroke="#38bdf8" stroke-width="0.8"/>
+                    <ellipse cx="555" cy="75" rx="3.5" ry="7" fill="rgba(56, 189, 248, 0.35)" stroke="#38bdf8" stroke-width="0.8"/>
+                    <ellipse cx="680" cy="75" rx="3.5" ry="7" fill="rgba(56, 189, 248, 0.35)" stroke="#38bdf8" stroke-width="0.8"/>
+                    <ellipse cx="810" cy="75" rx="3.5" ry="7" fill="rgba(56, 189, 248, 0.35)" stroke="#38bdf8" stroke-width="0.8"/>
+                    <ellipse cx="940" cy="75" rx="3.5" ry="7" fill="rgba(56, 189, 248, 0.35)" stroke="#38bdf8" stroke-width="0.8"/>
+                </g>
+
+                <!-- ================= CLINICAL EVENT NODES (DIRECTLY ON RAIL) ================= -->
+
+                <!-- Node 1: Nacimiento / Registro Demográfico (Baseline) -->
+                <g class="timeline-node" data-domain="condition" data-icon="👶"
+                   data-title="Nacimiento &amp; Registro Demográfico" 
+                   data-omop="PERSON" 
+                   data-concept="OMOP Concept ID: 0 // Baseline Demographics" 
+                   data-date="Año 1965 // Nacimiento"
+                   data-desc="Registro inicial del paciente en el hospital. Establece fecha de nacimiento, sexo, etnia y apertura de la historia longitudinal."
+                   onmouseenter="window.showPatientEventDetail(this)" onclick="window.showPatientEventDetail(this)">
+                    <text x="80" y="42" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#7dd3fc" text-anchor="middle">Nacimiento</text>
+                    <text x="80" y="53" font-family="'JetBrains Mono', monospace" font-size="8" fill="#38bdf8" text-anchor="middle">Año 1965</text>
+                    <line x1="80" y1="56" x2="80" y2="60" stroke="#38bdf8" stroke-width="1.2"/>
+                    <circle cx="80" cy="75" r="14" fill="#0c4a6e" stroke="#38bdf8" stroke-width="2"/>
+                    <foreignObject x="66" y="61" width="28" height="28" style="overflow: visible; pointer-events: none;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 15px; user-select: none; line-height: 1;">👶</div>
+                    </foreignObject>
+                </g>
+
+                <!-- Node 2: Inmunización Infantil (Drug) -->
+                <g class="timeline-node" data-domain="drug" data-icon="💉"
+                   data-title="Inmunizaciones Infantiles" 
+                   data-omop="DRUG_EXPOSURE" 
+                   data-concept="RxNorm: 284348 // Vacuna Triple Viral" 
+                   data-date="Año 1970 (5 años)"
+                   data-desc="Administración de esquemas de vacunación pediátrica. Estandarizado en DRUG_EXPOSURE con fechas de inicio, lote y dosis administrada."
+                   onmouseenter="window.showPatientEventDetail(this)" onclick="window.showPatientEventDetail(this)">
+                    <circle cx="175" cy="75" r="14" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+                    <foreignObject x="161" y="61" width="28" height="28" style="overflow: visible; pointer-events: none;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 15px; user-select: none; line-height: 1;">💉</div>
+                    </foreignObject>
+                    <line x1="175" y1="90" x2="175" y2="94" stroke="#10b981" stroke-width="1.2"/>
+                    <text x="175" y="104" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#6ee7b7" text-anchor="middle">Vacunación</text>
+                    <text x="175" y="115" font-family="'JetBrains Mono', monospace" font-size="8" fill="#34d399" text-anchor="middle">5 años (Pediatría)</text>
+                </g>
+
+                <!-- Node 3: Diagnóstico de Asma Crónica (Condition) -->
+                <g class="timeline-node" data-domain="condition" data-icon="🩺"
+                   data-title="Diagnóstico de Asma Crónica" 
+                   data-omop="CONDITION_OCCURRENCE" 
+                   data-concept="SNOMED: 195967001 // Asthma" 
+                   data-date="Año 1985 (20 años)"
+                   data-desc="Diagnóstico de asma en atención ambulatoria. Permite definir antecedentes de enfermedad respiratoria para estratificación y comorbilidades."
+                   onmouseenter="window.showPatientEventDetail(this)" onclick="window.showPatientEventDetail(this)">
+                    <text x="280" y="42" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#7dd3fc" text-anchor="middle">Asma Crónica</text>
+                    <text x="280" y="53" font-family="'JetBrains Mono', monospace" font-size="8" fill="#38bdf8" text-anchor="middle">20 años (Comorbilidad)</text>
+                    <line x1="280" y1="56" x2="280" y2="60" stroke="#38bdf8" stroke-width="1.2"/>
+                    <circle cx="280" cy="75" r="14" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
+                    <foreignObject x="266" y="61" width="28" height="28" style="overflow: visible; pointer-events: none;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 15px; user-select: none; line-height: 1;">🩺</div>
+                    </foreignObject>
+                </g>
+
+                <!-- Node 4: Colonoscopia de Tamizaje (Procedure) -->
+                <g class="timeline-node" data-domain="procedure" data-icon="🔬"
+                   data-title="Colonoscopia de Tamizaje" 
+                   data-omop="PROCEDURE_OCCURRENCE" 
+                   data-concept="SNOMED: 73761001 / CPT: 45378 // Colonoscopy" 
+                   data-date="Año 2010 (45 años)"
+                   data-desc="Procedimiento endoscópico preventivo ambulatorio. Registrado en PROCEDURE_OCCURRENCE con código de procedimiento, fecha y profesional ejecutor."
+                   onmouseenter="window.showPatientEventDetail(this)" onclick="window.showPatientEventDetail(this)">
+                    <circle cx="385" cy="75" r="14" fill="#581c87" stroke="#c084fc" stroke-width="2"/>
+                    <foreignObject x="371" y="61" width="28" height="28" style="overflow: visible; pointer-events: none;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 15px; user-select: none; line-height: 1;">🔬</div>
+                    </foreignObject>
+                    <line x1="385" y1="90" x2="385" y2="94" stroke="#c084fc" stroke-width="1.2"/>
+                    <text x="385" y="104" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#d8b4fe" text-anchor="middle">Colonoscopia</text>
+                    <text x="385" y="115" font-family="'JetBrains Mono', monospace" font-size="8" fill="#c084fc" text-anchor="middle">45 años (Tamizaje)</text>
+                </g>
+
+                <!-- Node 5: PUNTO ÍNDICE (T=0) - CUADRO ROJO SOLO SIN CATÉTER NI AAS -->
+                <g class="timeline-node" data-domain="condition" data-icon="🟥"
+                   data-title="PUNTO ÍNDICE (T = 0): Momento Cero" 
+                   data-omop="COHORTE / ÍNDICE (T=0)" 
+                   data-concept="OMOP Cohort Index // Punto Temporal Cero" 
+                   data-date="T = 0 // Momento Cero"
+                   data-desc="Hito central que divide el historial previo (Línea Base) del periodo prospectivo de evaluación (Seguimiento). Identifica el momento exacto de ingreso a la cohorte."
+                   onmouseenter="window.showPatientEventDetail(this)" onclick="window.showPatientEventDetail(this)">
+                    <text x="495" y="42" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="800" fill="#fca5a5" text-anchor="middle" letter-spacing="0.05em">ÍNDICE (T₀)</text>
+                    <text x="495" y="53" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#f87171" text-anchor="middle">Punto de Partida</text>
+                    <line x1="495" y1="55" x2="495" y2="59" stroke="#f87171" stroke-width="1.2"/>
+                    <!-- Cuadro rojo solo para identificar el punto T0 -->
+                    <rect x="480" y="60" width="30" height="30" rx="5" fill="#dc2626" stroke="#fca5a5" stroke-width="2.2" filter="url(#glow-t0)"/>
+                    <foreignObject x="480" y="60" width="30" height="30" style="overflow: visible; pointer-events: none;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 900; user-select: none;">T₀</div>
+                    </foreignObject>
+                    <line x1="495" y1="91" x2="495" y2="95" stroke="#f87171" stroke-width="1.2"/>
+                    <text x="495" y="104" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#fca5a5" text-anchor="middle">Momento Cero</text>
+                    <text x="495" y="115" font-family="'JetBrains Mono', monospace" font-size="8" fill="#f87171" text-anchor="middle">Corte de Cohorte</text>
+                </g>
+
+                <!-- Node 6: Mediciones / Biomarcadores Troponina (Measurement) -->
+                <g class="timeline-node" data-domain="measurement" data-icon="🧪"
+                   data-title="Monitoreo de Troponina &amp; Perfil Lipídico" 
+                   data-omop="MEASUREMENT" 
+                   data-concept="LOINC: 10839-9 // Troponin I.cardiac / LOINC: 2093-3 // Colesterol" 
+                   data-date="T + 30 días"
+                   data-desc="Mediciones cuantitativas pos-evento. Registradas en MEASUREMENT con valor numérico, unidad estandarizada (UCUM) y rango de referencia normal."
+                   onmouseenter="window.showPatientEventDetail(this)" onclick="window.showPatientEventDetail(this)">
+                    <circle cx="615" cy="75" r="14" fill="#78350f" stroke="#f59e0b" stroke-width="2"/>
+                    <foreignObject x="601" y="61" width="28" height="28" style="overflow: visible; pointer-events: none;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 15px; user-select: none; line-height: 1;">🧪</div>
+                    </foreignObject>
+                    <line x1="615" y1="90" x2="615" y2="94" stroke="#f59e0b" stroke-width="1.2"/>
+                    <text x="615" y="104" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#fde68a" text-anchor="middle">Troponina / Labs</text>
+                    <text x="615" y="115" font-family="'JetBrains Mono', monospace" font-size="8" fill="#f59e0b" text-anchor="middle">T + 30 días (LOINC)</text>
+                </g>
+
+                <!-- Node 7: Tratamiento Farmacológico Continuo / Estatina (Drug) -->
+                <g class="timeline-node" data-domain="drug" data-icon="💊"
+                   data-title="Titulación Farmacológica &amp; Estatinas" 
+                   data-omop="DRUG_EXPOSURE" 
+                   data-concept="RxNorm: 83367 // Atorvastatina 40mg / RxNorm: 1364430 // Apixabán" 
+                   data-date="T + 6 meses"
+                   data-desc="Seguimiento de adherencia farmacoterapéutica. Permite medir persistencia al tratamiento en DRUG_EXPOSURE y evaluar efectividad en vida real."
+                   onmouseenter="window.showPatientEventDetail(this)" onclick="window.showPatientEventDetail(this)">
+                    <text x="745" y="42" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#6ee7b7" text-anchor="middle">Estatina / Terapia</text>
+                    <text x="745" y="53" font-family="'JetBrains Mono', monospace" font-size="8" fill="#34d399" text-anchor="middle">T + 6 meses (RxNorm)</text>
+                    <line x1="745" y1="56" x2="745" y2="60" stroke="#10b981" stroke-width="1.2"/>
+                    <circle cx="745" cy="75" r="14" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+                    <foreignObject x="731" y="61" width="28" height="28" style="overflow: visible; pointer-events: none;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 15px; user-select: none; line-height: 1;">💊</div>
+                    </foreignObject>
+                </g>
+
+                <!-- Node 8: Desenlace Clínico: Fibrilación Auricular (Outcome Condition) -->
+                <g class="timeline-node" data-domain="condition" data-icon="⚠️"
+                   data-title="DESENLACE CLÍNICO: Fibrilación Auricular" 
+                   data-omop="CONDITION_OCCURRENCE (OUTCOME)" 
+                   data-concept="SNOMED: 49436004 // Atrial fibrillation" 
+                   data-date="T + 12 meses // Desenlace"
+                   data-desc="Evento de interés primario detectado en seguimiento. Permite evaluar tasas de incidencia, tiempo hasta el evento (Survival Analysis) y modelos predictivos."
+                   onmouseenter="window.showPatientEventDetail(this)" onclick="window.showPatientEventDetail(this)">
+                    <circle cx="880" cy="75" r="14" fill="#7f1d1d" stroke="#f87171" stroke-width="2"/>
+                    <foreignObject x="866" y="61" width="28" height="28" style="overflow: visible; pointer-events: none;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 15px; user-select: none; line-height: 1;">⚠️</div>
+                    </foreignObject>
+                    <line x1="880" y1="90" x2="880" y2="94" stroke="#f87171" stroke-width="1.2"/>
+                    <text x="880" y="104" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#fca5a5" text-anchor="middle">Fib. Auricular</text>
+                    <text x="880" y="115" font-family="'JetBrains Mono', monospace" font-size="8" fill="#f87171" text-anchor="middle">T + 12m (Desenlace)</text>
+                </g>
+            </svg>
+
+            <!-- Dynamic Live HUD Inspector Strip (Updates on hover or click) -->
+            <div class="timeline-hud-inspector" id="patientTimelineInspector" style="background: var(--surface-low); border: 1px solid var(--border-keyline); border-radius: var(--radius-sm); padding: 7px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; margin-top: 6px; transition: all 0.25s ease;">
+                <div style="display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0;">
+                    <span id="inspectIcon" style="font-size: 16px; flex-shrink: 0;">💡</span>
+                    <span id="inspectDomainBadge" class="badge badge-outline" style="font-size: 10px; padding: 2px 7px; flex-shrink: 0;">INSPECTOR OMOP</span>
+                    <strong id="inspectTitle" style="font-size: 12.5px; color: var(--text-high); flex-shrink: 0;">Trayectoria Continua:</strong>
+                    <span id="inspectDesc" style="font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        Pasa el cursor sobre los hitos de la línea para explorar cómo OMOP CDM unifica condiciones, medicamentos, procedimientos y mediciones.
+                    </span>
+                </div>
+                <div id="inspectConceptCode" style="font-family: var(--font-mono); font-size: 11px; color: var(--primary); flex-shrink: 0; background: rgba(56, 189, 248, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">
+                    EJE LONGITUDINAL
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Clinical Research Questions Cards -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 1.8vw, 22px); align-items: stretch;">
+            
+            <!-- Question 1: Clinical Characterization -->
+            <div class="card" style="border-top: 4px solid #38bdf8; padding: clamp(14px, 1.8vh, 20px); display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-family: var(--font-mono); font-size: 11.5px; color: #38bdf8; text-transform: uppercase;">PARADIGMA 01</span>
+                        <span class="badge badge-blue">DESCRIPTIVO</span>
+                    </div>
+                    <h3 style="color: var(--text-high); font-size: clamp(1.15rem, 1.35vw, 1.45rem); margin-bottom: 8px; font-family: var(--font-headline);">
+                        Caracterización Clínica
+                    </h3>
+                    <div style="background: var(--surface-low); border-left: 3px solid #38bdf8; padding: 8px 12px; margin-bottom: 12px; border-radius: 2px;">
+                        <p style="font-size: 13.5px; color: #bae6fd; font-style: italic; margin: 0; line-height: 1.4;">
+                            "¿Qué pacientes reciben qué tratamientos y con qué perfil de complicaciones?"
+                        </p>
+                    </div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 16px; line-height: 1.5; margin: 0;">
+                        <li>Incidencia de eventos adversos y comorbilidades.</li>
+                        <li>Patrones de adherencia y persistencia de fármacos.</li>
+                        <li>Distribución por grupos etarios, sexo y factores de riesgo.</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-keyline); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);">
+                    Caso de uso: Epidemiología institucional & auditoría médica.
+                </div>
+            </div>
+
+            <!-- Question 2: Population-level Effect Estimation -->
+            <div class="card" style="border-top: 4px solid #f59e0b; padding: clamp(14px, 1.8vh, 20px); display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--amber-warning); text-transform: uppercase;">PARADIGMA 02</span>
+                        <span class="badge badge-amber">CAUSALIDAD</span>
+                    </div>
+                    <h3 style="color: var(--text-high); font-size: clamp(1.15rem, 1.35vw, 1.45rem); margin-bottom: 8px; font-family: var(--font-headline);">
+                        Estimación de Efecto Poblacional
+                    </h3>
+                    <div style="background: var(--surface-low); border-left: 3px solid #f59e0b; padding: 8px 12px; margin-bottom: 12px; border-radius: 2px;">
+                        <p style="font-size: 13.5px; color: #fef3c7; font-style: italic; margin: 0; line-height: 1.4;">
+                            "¿El tratamiento A produce mejores desenlaces que el tratamiento B en la vida real?"
+                        </p>
+                    </div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 16px; line-height: 1.5; margin: 0;">
+                        <li>Inferencia causal mediante <em>Propensity Score Matching</em>.</li>
+                        <li>Evaluación de efectividad y seguridad comparativa (RWE).</li>
+                        <li>Ajuste riguroso por sesgos de confusión observacionales.</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-keyline); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);">
+                    Caso de uso: Guías farmacoterapéuticas y publicaciones científicas.
+                </div>
+            </div>
+
+            <!-- Question 3: Patient-level Prediction -->
+            <div class="card" style="border-top: 4px solid #10b981; padding: clamp(14px, 1.8vh, 20px); display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--tertiary); text-transform: uppercase;">PARADIGMA 03</span>
+                        <span class="badge badge-emerald">PREDICCIÓN / IA</span>
+                    </div>
+                    <h3 style="color: var(--text-high); font-size: clamp(1.15rem, 1.35vw, 1.45rem); margin-bottom: 8px; font-family: var(--font-headline);">
+                        Predicción a Nivel de Paciente
+                    </h3>
+                    <div style="background: var(--surface-low); border-left: 3px solid #10b981; padding: 8px 12px; margin-bottom: 12px; border-radius: 2px;">
+                        <p style="font-size: 13.5px; color: #d1fae5; font-style: italic; margin: 0; line-height: 1.4;">
+                            "¿Cuál es la probabilidad calculada de que este paciente sufra un desenlace adverso?"
+                        </p>
+                    </div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 16px; line-height: 1.5; margin: 0;">
+                        <li>Modelado de riesgo con algoritmos de Machine Learning (PLP).</li>
+                        <li>Predicción temprana de reingreso hospitalario a 30 días.</li>
+                        <li>Estratificación personalizada para programas de prevención.</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-keyline); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);">
+                    Caso de uso: Algoritmos de soporte a la decisión clínica (CDSS).
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Self-Contained Interactive Timeline Controller -->
+<script>
+    (function () {
+        const domainBadgeMap = {
+            'condition': { badgeClass: 'badge badge-blue', badgeText: 'CONDITION_OCCURRENCE' },
+            'drug': { badgeClass: 'badge badge-emerald', badgeText: 'DRUG_EXPOSURE' },
+            'procedure': { badgeClass: 'badge badge-indigo', badgeText: 'PROCEDURE_OCCURRENCE' },
+            'measurement': { badgeClass: 'badge badge-amber', badgeText: 'MEASUREMENT' }
+        };
+
+        const domainSummaries = {
+            'all': {
+                icon: '💡',
+                badgeClass: 'badge badge-outline',
+                badgeText: 'INSPECTOR OMOP',
+                title: 'Trayectoria Continua:',
+                desc: 'Pasa el cursor sobre los hitos de la línea para explorar cómo OMOP CDM unifica condiciones, medicamentos, procedimientos y mediciones.',
+                code: 'EJE LONGITUDINAL'
+            },
+            'condition': {
+                icon: '🩺',
+                badgeClass: 'badge badge-blue',
+                badgeText: 'CONDITION_OCCURRENCE',
+                title: 'Dominio Condiciones (SNOMED-CT):',
+                desc: 'Captura diagnósticos, comorbilidades y eventos clínicos sin perder la temporalidad ni la especificidad médica.',
+                code: 'TABLA CONDITION'
+            },
+            'drug': {
+                icon: '💊',
+                badgeClass: 'badge badge-emerald',
+                badgeText: 'DRUG_EXPOSURE',
+                title: 'Dominio Medicamentos (RxNorm):',
+                desc: 'Registra prescripciones, dispensaciones hospitalarias, posología y persistencia terapéutica longitudinal.',
+                code: 'TABLA DRUG'
+            },
+            'procedure': {
+                icon: '🔬',
+                badgeClass: 'badge badge-indigo',
+                badgeText: 'PROCEDURE_OCCURRENCE',
+                title: 'Dominio Procedimientos (CPT-4 / SNOMED):',
+                desc: 'Documenta intervenciones quirúrgicas, cateterismos, endoscopias y actos médicos realizados.',
+                code: 'TABLA PROCEDURE'
+            },
+            'measurement': {
+                icon: '🧪',
+                badgeClass: 'badge badge-amber',
+                badgeText: 'MEASUREMENT',
+                title: 'Dominio Mediciones & Labs (LOINC):',
+                desc: 'Estandariza valores numéricos de laboratorio, signos vitales y biomarcadores con unidades UCUM homogéneas.',
+                code: 'TABLA MEASUREMENT'
+            }
+        };
+
+        window.showPatientEventDetail = function (el) {
+            const domain = el.getAttribute('data-domain');
+            const title = el.getAttribute('data-title');
+            const concept = el.getAttribute('data-concept');
+            const date = el.getAttribute('data-date');
+            const desc = el.getAttribute('data-desc');
+            const icon = el.getAttribute('data-icon') || '📋';
+
+            let badgeConfig = domainBadgeMap[domain] || { badgeClass: 'badge badge-blue', badgeText: domain.toUpperCase() };
+            if (icon === '🟥') {
+                badgeConfig = { badgeClass: 'badge badge-rose', badgeText: 'ÍNDICE COHORTE (T=0)' };
+            }
+
+            const inspectIcon = document.getElementById('inspectIcon');
+            const inspectBadge = document.getElementById('inspectDomainBadge');
+            const inspectTitle = document.getElementById('inspectTitle');
+            const inspectDesc = document.getElementById('inspectDesc');
+            const inspectCode = document.getElementById('inspectConceptCode');
+
+            if (inspectIcon) inspectIcon.textContent = icon;
+            if (inspectBadge) {
+                inspectBadge.className = badgeConfig.badgeClass;
+                inspectBadge.textContent = badgeConfig.badgeText;
+            }
+            if (inspectTitle) inspectTitle.textContent = `${title} (${date}):`;
+            if (inspectDesc) inspectDesc.textContent = `${desc} — [${concept}]`;
+            if (inspectCode) inspectCode.textContent = concept.split('//')[0].trim();
+        };
+
+        window.filterPatientTimeline = function (selectedDomain) {
+            const nodes = document.querySelectorAll('#slide05 .timeline-node');
+            const buttons = document.querySelectorAll('#slide05 .domain-filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-domain') === selectedDomain) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            nodes.forEach(node => {
+                const nodeDomain = node.getAttribute('data-domain');
+                if (selectedDomain === 'all' || nodeDomain === selectedDomain) {
+                    node.classList.remove('dimmed');
+                    node.classList.add('active-highlight');
+                    setTimeout(() => node.classList.remove('active-highlight'), 600);
+                } else {
+                    node.classList.add('dimmed');
+                    node.classList.remove('active-highlight');
+                }
+            });
+
+            // Update inspector with domain summary if filtered
+            const summary = domainSummaries[selectedDomain] || domainSummaries['all'];
+            const inspectIcon = document.getElementById('inspectIcon');
+            const inspectBadge = document.getElementById('inspectDomainBadge');
+            const inspectTitle = document.getElementById('inspectTitle');
+            const inspectDesc = document.getElementById('inspectDesc');
+            const inspectCode = document.getElementById('inspectConceptCode');
+
+            if (inspectIcon) inspectIcon.textContent = summary.icon;
+            if (inspectBadge) {
+                inspectBadge.className = summary.badgeClass;
+                inspectBadge.textContent = summary.badgeText;
+            }
+            if (inspectTitle) inspectTitle.textContent = summary.title;
+            if (inspectDesc) inspectDesc.textContent = summary.desc;
+            if (inspectCode) inspectCode.textContent = summary.code;
+        };
+    })();
+</script>
